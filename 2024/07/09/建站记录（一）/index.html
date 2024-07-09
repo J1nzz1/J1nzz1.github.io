@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>建站记录（一） | J1nz's Blog</title><meta name="author" content="J1nz"><meta name="copyright" content="J1nz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="建站原因两天之前在跟我爸聊天之后颇有感悟，想要写一些东西。 在移动端我一直用卡片日记做每日记录，由于手机打字没有PC方便，很难用来写长文。而且近来记录欲望下滑，对鸡毛蒜皮的小事进行记录也逐渐成为了负担，时常拖到第二天才去补录，那时就已经忘记了很多当时的感受。刚好两天前萌生“换一种记录方式”的想法，一看卡片数量，刚刚好好记录了365天整，蛮有仪式感的。想来正是一年之前孤身跨越8192千米来到了英国，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建站记录（一）">
+<meta property="og:url" content="https://j1nzz1.github.io/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="J1nz&#39;s Blog">
+<meta property="og:description" content="建站原因两天之前在跟我爸聊天之后颇有感悟，想要写一些东西。 在移动端我一直用卡片日记做每日记录，由于手机打字没有PC方便，很难用来写长文。而且近来记录欲望下滑，对鸡毛蒜皮的小事进行记录也逐渐成为了负担，时常拖到第二天才去补录，那时就已经忘记了很多当时的感受。刚好两天前萌生“换一种记录方式”的想法，一看卡片数量，刚刚好好记录了365天整，蛮有仪式感的。想来正是一年之前孤身跨越8192千米来到了英国，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg">
+<meta property="article:published_time" content="2024-07-09T19:02:03.000Z">
+<meta property="article:modified_time" content="2024-07-09T18:08:11.048Z">
+<meta property="article:author" content="J1nz">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Butterfly">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="主题美化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg"><link rel="shortcut icon" href="https://pic.imgdb.cn/item/668d70f5d9c307b7e9b06e27.png"><link rel="canonical" href="https://j1nzz1.github.io/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="/css/hover_animation.css"><link rel="stylesheet" href="/css/menu_mid.css"><link rel="stylesheet" href="/css/new_post.css"><link rel="stylesheet" href="/css/search_hide.css"><link rel="stylesheet" href="/css/site_icon.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"WOURYZ5KW7","apiKey":"de7ae43a5b620a11526b973c29243b1c","indexName":"Index","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '建站记录（一）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-09 18:08:11'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/668bcb04d9c307b7e9f5f5c3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="J1nz's Blog"><img class="site-icon" src="https://pic.imgdb.cn/item/668d71cdd9c307b7e9b16501.png" alt="Logo"/><span class="site-name">J1nz's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">建站记录（一）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-09T19:02:03.000Z" title="发表于 2024-07-09 19:02:03">2024-07-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-09T18:08:11.048Z" title="更新于 2024-07-09 18:08:11">2024-07-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/category1/">category1</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="建站记录（一）"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="建站原因"><a href="#建站原因" class="headerlink" title="建站原因"></a>建站原因</h1><p>两天之前在跟我爸聊天之后颇有感悟，想要写一些东西。</p>
+<p>在移动端我一直用卡片日记做每日记录，由于手机打字没有PC方便，很难用来写长文。而且近来记录欲望下滑，对鸡毛蒜皮的小事进行记录也逐渐成为了负担，时常拖到第二天才去补录，那时就已经忘记了很多当时的感受。刚好两天前萌生“换一种记录方式”的想法，一看卡片数量，刚刚好好记录了365天整，蛮有仪式感的。想来正是一年之前孤身跨越8192千米来到了英国，初来乍到在阿姆斯特丹转机没有签证不能出机场还在候机大厅睡了一夜，印象深刻。</p>
+<p>而在PC端，我一直使用Word进行记录，体验并不美好。界面单调且不美观，整理和查找的难度也挺高。我的记录几乎是纯文本，所以所谓丰富全面的功能对我来说也意义不大。</p>
+<p>除此之外，我也缺乏一个用于向别人展示我的想法的地方：我没有一个长时间使用的社交软件，QQ空间和朋友圈只有寥寥几条，最新发布也已经是几年之前了，微博之流更是从来没有用过。我还是希望可以有一个地方，在我新认识朋友时直接甩过去，让他可以快速了解我的偏好和各种思考。</p>
+<p>在几年前看到过一个很漂亮的个人博客，遗憾的是已经不记得名字了。但是他的Subtitile让我至今记忆犹新：Stay hungry, Stay foolish。求知若饥，虚心若愚，很契合我的人生美学。这可以说是我搭自己的博客想法的萌芽。</p>
+<h1 id="建站过程"><a href="#建站过程" class="headerlink" title="建站过程"></a>建站过程</h1><p>主要参考的是<a target="_blank" rel="noopener" href="https://fe32.top/">唐志远</a>大佬的博客，选择使用Hexo + Github.page，博客主题选用Butterfly。一来是搭建过程简单、界面简洁，二来是可以省去服务器的成本。主要是写给自己看，或者自己手动甩给朋友，因此静态网页就足够满足我的需求了。</p>
+<p>搭建过程没有什么好说的，对着教程照葫芦画瓢就行。搭建过程中犯的一个比较笨蛋的错误是，Tzy为国内的小伙伴提供了一个淘宝的镜像，因为在国内使用Github的源会比较慢。我在国外也照抄了这一步用国内的源，反而舍近求远了:(</p>
+<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>我在阿里云买了一个.cc域名，首年29CNY，次年及以后续费75CNY。</p>
+<h1 id="主题组件调整和美化"><a href="#主题组件调整和美化" class="headerlink" title="主题组件调整和美化"></a>主题组件调整和美化</h1><h2 id="我期待的风格"><a href="#我期待的风格" class="headerlink" title="我期待的风格"></a>我期待的风格</h2><p>在开始搭建我的博客之前浏览了几十个博客，最终坚定了我的博客页面一定要简洁，不布置花里胡哨的组件，尽可能做减法。</p>
+<blockquote>
+<p>功能服务于需求，需求先于功能。</p>
+</blockquote>
+<h2 id="对主题组件的调整"><a href="#对主题组件的调整" class="headerlink" title="对主题组件的调整"></a>对主题组件的调整</h2><p>调整都基于对下方文件的编辑。</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo_config.butterfly.yml</p>
+</blockquote>
+<p>具体调整内容如下：</p>
+<ul>
+<li>顶部导航栏的图标和名称修改。<blockquote>
+<p>通过CSS注入调整了图标的位置</p>
+</blockquote>
+</li>
+<li>社交图标修改，并新增QQ和Wechat。移除Follow me按钮。</li>
+<li>网站图标修改，设置了Subtitle。<blockquote>
+<p>这里仍存在一个问题，图标在标签页会正常显示，但是收藏到书签中后又会变成主题默认的图标</p>
+</blockquote>
+</li>
+<li>头像修改，并添加个性签名。</li>
+<li>设置主页顶部图片，其他页面暂时沿用此图片。</li>
+<li>关闭“复制添加版权信息”的功能。</li>
+<li>开启Algolia search功能。</li>
+<li>调整网站背景颜色为“#f8f9fe”。</li>
+<li>关闭打字特效、背景特效。</li>
+</ul>
+<p>其中，关闭公告栏一方面是因为博客主要面向我自己，另一方面是我觉得红色的抖动图标不够美观，而我现在的CSS编码能力几乎为零。未来有希望优化之后可能会添加回来。</p>
+<p>是否保留进入网站时的大图界面也是我在犹豫的，Tzy大佬在后续迭代中关闭了这个功能，这也是做减法的一部分。之后我很有可能也会关掉这个功能。</p>
+<blockquote>
+<p>后来看了手机端的展示效果，还是有这个界面效果好，暂时决定保留。</p>
+</blockquote>
+<h2 id="主题美化和功能实现"><a href="#主题美化和功能实现" class="headerlink" title="主题美化和功能实现"></a>主题美化和功能实现</h2><p>主要参考的对象是<a target="_blank" rel="noopener" href="https://fe32.top/">Tzy</a>、<a target="_blank" rel="noopener" href="https://blog.lvhrn.cn/">JayHrn</a>和<a target="_blank" rel="noopener" href="https://blog.leonus.cn/">Leonus</a>，这三位的网站是我见过的最具简洁美感的。</p>
+<h3 id="调整个人信息卡片的悬停动画"><a href="#调整个人信息卡片的悬停动画" class="headerlink" title="调整个人信息卡片的悬停动画"></a>调整个人信息卡片的悬停动画</h3><p>关闭头像的悬停动画（旋转），并将社交图标的悬停动画修改为缩放。参考<a target="_blank" rel="noopener" href="https://ks233.github.io/2023/12/17/Butterfly-%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E8%AE%B0%E5%BD%95/">Ks233</a>的博客，通过注入自定义CSS实现，文件路径如下。</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo\source\css\hover_animation.css</p>
+</blockquote>
+<h3 id="调整卡片透明度、页脚毛玻璃效果"><a href="#调整卡片透明度、页脚毛玻璃效果" class="headerlink" title="调整卡片透明度、页脚毛玻璃效果"></a>调整卡片透明度、页脚毛玻璃效果</h3><p>将文章、侧边栏等卡片设置为有一定透明度，并为页脚添加毛玻璃效果。这个美化搭配背景图片使用效果更佳。参考<a target="_blank" rel="noopener" href="https://ks233.github.io/2023/12/17/Butterfly-%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E8%AE%B0%E5%BD%95/">Ks233</a>的博客，通过注入自定义CSS实现，文件路径如下。</p>
+<blockquote>
+<p>还没有做<br>由于暂时不设置背景图片，所以暂时不需要做这个美化</p>
+</blockquote>
+<h3 id="美化顶部导航栏"><a href="#美化顶部导航栏" class="headerlink" title="美化顶部导航栏"></a>美化顶部导航栏</h3><p>将文章、清单、留言和关于置中，参考Leonus的<a target="_blank" rel="noopener" href="https://blog.leonus.cn/2022/hexoCenter.html">butterfly博客导航栏居中</a>教程。通过注入自定义CSS实现，文件路径如下。</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo\source\css\menu_mid.css</p>
+</blockquote>
+<p>隐藏“搜索”文字。通过注入自定义CSS实现，文件路径如下。</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo\source\css\search_hide.css</p>
+</blockquote>
+<p>将导航栏的左端和右端与卡片左端和右端对齐。这一个功能我始终无法实现，最终决定发邮件询问Tzy大佬。</p>
+<h3 id="美化搜索栏"><a href="#美化搜索栏" class="headerlink" title="美化搜索栏"></a>美化搜索栏</h3><p>参考Leonus<a target="_blank" rel="noopener" href="https://blog.leonus.cn/2022/algolia.html">对algolia的简单美化和优化</a>，搜索栏的页面布局直接使用了他的方案，按照他的源码对下述两个文件内容进行了修改。</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo\themes\butterfly\source\css_search\algolia.styl<br>D:\hexo-blog\blog-demo\themes\butterfly\source\js\search\algolia.js</p>
+</blockquote>
+<p>之后发现他用于设置颜色的变量是全局变量，在他提供的这部分源码中没有，因此我的搜索栏边框、搜索结果页码等依旧在使用默认主题颜色。我对algolia.styl文件添加了以下代码：</p>
+<figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义颜色变量</span></span><br><span class="line"><span class="variable">$search</span>-<span class="attribute">color</span> = <span class="number">#4b4a48</span> // 搜索框边框颜色</span><br><span class="line"><span class="variable">$search</span>-keyword-highlight = <span class="number">#881400</span> <span class="comment">// 关键词高亮颜色</span></span><br><span class="line"><span class="variable">$theme</span>-paginator-<span class="attribute">color</span> = <span class="number">#4b4a48</span> // 分页器选中项背景颜色</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定义CSS自定义属性（适用于主题色）</span></span><br><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">  <span class="attr">--search-input-color</span>: <span class="number">#7b7c7d</span>; <span class="comment">// 搜索输入框文字颜色</span></span><br><span class="line">  <span class="attr">--search-bg</span>: <span class="number">#f8f9fe</span>; <span class="comment">// 搜索框背景颜色</span></span><br><span class="line">  <span class="attr">--search-result-title</span>: <span class="number">#000000</span>; <span class="comment">// 搜索结果标题颜色</span></span><br><span class="line">  <span class="attr">--leonus-main</span>: <span class="number">#4b4a48</span>; <span class="comment">// 主主题颜色</span></span><br><span class="line">  <span class="attr">--search-height</span>: <span class="number">60px</span>; <span class="comment">// 搜索框高度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于还没有对我自己的颜色进行规范化，所以暂时沿用Leonus佬的变量名。修改后基本完成了对搜索栏的美化，只剩最后一个问题：搜索栏展开后左上角的“搜索”两个字和搜索结果前面的无序列表符号还是沿用主题颜色，也就是天蓝色，我会在后续修复这个问题。</p>
+<h3 id="基于外挂标签的最新文章标签"><a href="#基于外挂标签的最新文章标签" class="headerlink" title="基于外挂标签的最新文章标签"></a>基于外挂标签的最新文章标签</h3><p>参考Leonus佬的<a target="_blank" rel="noopener" href="https://blog.leonus.cn/2022/newpost.html">实现最新文章标志</a>教程。修改了如下两个文件：</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo\themes\butterfly\scripts\helpers\page.js<br>D:\hexo-blog\blog-demo\themes\butterfly\layout\includes\mixins\post-ui.pug</p>
+</blockquote>
+<p>随后注入自定义CSS文件，文件路径如下：</p>
+<blockquote>
+<p>D:\hexo-blog\blog-demo\source\css\new_post.css</p>
+</blockquote>
+<p>成功实现功能，但是存在问题：颜色仍然是我不喜欢的天蓝色主题色。希望在调整主题色之后可以随之改善。</p>
+<h1 id="尚未实现功能"><a href="#尚未实现功能" class="headerlink" title="尚未实现功能"></a>尚未实现功能</h1><h3 id="美化右下角图标颜色、页码颜色等主题颜色"><a href="#美化右下角图标颜色、页码颜色等主题颜色" class="headerlink" title="美化右下角图标颜色、页码颜色等主题颜色"></a>美化右下角图标颜色、页码颜色等主题颜色</h3><p><del>Leonus佬似乎实现了多个主题颜色随即使用的功能，而且颜色都很好看。在侧边栏目录、右下方按钮、右侧滚轮、底部版权声明等多个使用主题色的地方都应用。很遗憾没有在他的博客里找到相应教程。</del></p>
+<p>在JayHrn佬的博客里找到了这项功能的实现方法，即<a target="_blank" rel="noopener" href="https://blog.lvhrn.cn/posts/af3f67e4.html">提取文章封面的颜色作为主题色</a>。实现起来有一定难度所以暂时搁置，另寻他法。</p>
+<h3 id="基于外挂标签的清单页面美化"><a href="#基于外挂标签的清单页面美化" class="headerlink" title="基于外挂标签的清单页面美化"></a>基于外挂标签的清单页面美化</h3><p>Tzy佬通过接入豆瓣、Bilibili的接口来实现对影视、番剧观看情况的转录，但是这种方式受限于平台本身，可能会有资源不全的问题，且难以实现高度个性化。我打算参考Leonus佬的方案，通过外挂标签实现对自己各种偏好清单的罗列和自定义。</p>
+<h3 id="归档、标签、分类页面美化"><a href="#归档、标签、分类页面美化" class="headerlink" title="归档、标签、分类页面美化"></a>归档、标签、分类页面美化</h3><p>由于也还没有发文章，没有标签和分类，还不知道要怎么做，暂时搁置。Leonus佬有标签页优化方案，后续可以尝试。</p>
+<h3 id="开通留言板"><a href="#开通留言板" class="headerlink" title="开通留言板"></a>开通留言板</h3><p>这个功能需要先部署评论功能，我不打算在文章页开通评论，所以评论功能只用于留言板，以后再说。</p>
+<h3 id="制作关于界面"><a href="#制作关于界面" class="headerlink" title="制作关于界面"></a>制作关于界面</h3><p>类似个人简历</p>
+<h3 id="历史版本记录"><a href="#历史版本记录" class="headerlink" title="历史版本记录"></a>历史版本记录</h3><p>在页脚或者顶部导航栏的“关于”一栏中，导向历史版本记录页面，以时间轴的形式对博客的迭代过程进行记录。可以参考Tzy佬的博客。</p>
+<h3 id="个性化页脚和页脚徽标"><a href="#个性化页脚和页脚徽标" class="headerlink" title="个性化页脚和页脚徽标"></a>个性化页脚和页脚徽标</h3><h3 id="修改字体"><a href="#修改字体" class="headerlink" title="修改字体"></a>修改字体</h3><p>暂时继续使用主题默认字体。</p>
+<h3 id="主页顶部轮播卡片"><a href="#主页顶部轮播卡片" class="headerlink" title="主页顶部轮播卡片"></a>主页顶部轮播卡片</h3><p>参考Akilar佬的教程</p>
+<h3 id="修改卡片宽度"><a href="#修改卡片宽度" class="headerlink" title="修改卡片宽度"></a>修改卡片宽度</h3><h3 id="修改加载动画"><a href="#修改加载动画" class="headerlink" title="修改加载动画"></a>修改加载动画</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://J1nzz1.github.io">J1nz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://j1nzz1.github.io/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/">https://j1nzz1.github.io/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://J1nzz1.github.io" target="_blank">J1nz's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/Butterfly/">Butterfly</a><a class="post-meta__tags" href="/tags/github/">github</a><a class="post-meta__tags" href="/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/">主题美化</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">J1nz</div><div class="author-info__description">爱是最高规格的抑制剂.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="/484434695" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #4b4a48;"></i></a><a class="social-icon" href="/J1nz_aono" target="_blank" title="WeChat"><i class="fa-brands fa-weixin" style="color: #4b4a48;"></i></a><a class="social-icon" href="https://github.com/J1nzz1" target="_blank" title="Github"><i class="fab fa-github" style="color: #4b4a48;"></i></a><a class="social-icon" href="/15993613003@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4b4a48;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%99%E5%8E%9F%E5%9B%A0"><span class="toc-number">1.</span> <span class="toc-text">建站原因</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BB%BA%E7%AB%99%E8%BF%87%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">建站过程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%9F%E5%90%8D"><span class="toc-number">2.1.</span> <span class="toc-text">域名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E7%BB%84%E4%BB%B6%E8%B0%83%E6%95%B4%E5%92%8C%E7%BE%8E%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">主题组件调整和美化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E6%9C%9F%E5%BE%85%E7%9A%84%E9%A3%8E%E6%A0%BC"><span class="toc-number">3.1.</span> <span class="toc-text">我期待的风格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E4%B8%BB%E9%A2%98%E7%BB%84%E4%BB%B6%E7%9A%84%E8%B0%83%E6%95%B4"><span class="toc-number">3.2.</span> <span class="toc-text">对主题组件的调整</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%E5%92%8C%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.3.</span> <span class="toc-text">主题美化和功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E5%8D%A1%E7%89%87%E7%9A%84%E6%82%AC%E5%81%9C%E5%8A%A8%E7%94%BB"><span class="toc-number">3.3.1.</span> <span class="toc-text">调整个人信息卡片的悬停动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B0%83%E6%95%B4%E5%8D%A1%E7%89%87%E9%80%8F%E6%98%8E%E5%BA%A6%E3%80%81%E9%A1%B5%E8%84%9A%E6%AF%9B%E7%8E%BB%E7%92%83%E6%95%88%E6%9E%9C"><span class="toc-number">3.3.2.</span> <span class="toc-text">调整卡片透明度、页脚毛玻璃效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%8E%E5%8C%96%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F"><span class="toc-number">3.3.3.</span> <span class="toc-text">美化顶部导航栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%8E%E5%8C%96%E6%90%9C%E7%B4%A2%E6%A0%8F"><span class="toc-number">3.3.4.</span> <span class="toc-text">美化搜索栏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE%E7%9A%84%E6%9C%80%E6%96%B0%E6%96%87%E7%AB%A0%E6%A0%87%E7%AD%BE"><span class="toc-number">3.3.5.</span> <span class="toc-text">基于外挂标签的最新文章标签</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B0%9A%E6%9C%AA%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">尚未实现功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BE%8E%E5%8C%96%E5%8F%B3%E4%B8%8B%E8%A7%92%E5%9B%BE%E6%A0%87%E9%A2%9C%E8%89%B2%E3%80%81%E9%A1%B5%E7%A0%81%E9%A2%9C%E8%89%B2%E7%AD%89%E4%B8%BB%E9%A2%98%E9%A2%9C%E8%89%B2"><span class="toc-number">4.0.1.</span> <span class="toc-text">美化右下角图标颜色、页码颜色等主题颜色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%A4%96%E6%8C%82%E6%A0%87%E7%AD%BE%E7%9A%84%E6%B8%85%E5%8D%95%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96"><span class="toc-number">4.0.2.</span> <span class="toc-text">基于外挂标签的清单页面美化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%92%E6%A1%A3%E3%80%81%E6%A0%87%E7%AD%BE%E3%80%81%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2%E7%BE%8E%E5%8C%96"><span class="toc-number">4.0.3.</span> <span class="toc-text">归档、标签、分类页面美化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E9%80%9A%E7%95%99%E8%A8%80%E6%9D%BF"><span class="toc-number">4.0.4.</span> <span class="toc-text">开通留言板</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E5%85%B3%E4%BA%8E%E7%95%8C%E9%9D%A2"><span class="toc-number">4.0.5.</span> <span class="toc-text">制作关于界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E8%AE%B0%E5%BD%95"><span class="toc-number">4.0.6.</span> <span class="toc-text">历史版本记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E6%80%A7%E5%8C%96%E9%A1%B5%E8%84%9A%E5%92%8C%E9%A1%B5%E8%84%9A%E5%BE%BD%E6%A0%87"><span class="toc-number">4.0.7.</span> <span class="toc-text">个性化页脚和页脚徽标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%AD%97%E4%BD%93"><span class="toc-number">4.0.8.</span> <span class="toc-text">修改字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E9%A1%B5%E9%A1%B6%E9%83%A8%E8%BD%AE%E6%92%AD%E5%8D%A1%E7%89%87"><span class="toc-number">4.0.9.</span> <span class="toc-text">主页顶部轮播卡片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%8D%A1%E7%89%87%E5%AE%BD%E5%BA%A6"><span class="toc-number">4.0.10.</span> <span class="toc-text">修改卡片宽度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E5%8A%A0%E8%BD%BD%E5%8A%A8%E7%94%BB"><span class="toc-number">4.0.11.</span> <span class="toc-text">修改加载动画</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" title="建站记录（一）">建站记录（一）</a><time datetime="2024-07-09T19:02:03.000Z" title="发表于 2024-07-09 19:02:03">2024-07-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/668bcb04d9c307b7e9f5f5c3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 By J1nz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = (ele) => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from(ele).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+    
+    codeMermaidEle.forEach(ele => {
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+  
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.23.2/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.66.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.14.0-b3"></script></div></div></body></html>
