@@ -1,0 +1,24 @@
+/* 1. .article-sort样式左侧边框改为无色 */
+.article-sort {
+  border-left: none !important;
+}
+
+/* 2. 去除.article-sort-title样式左侧的装饰性元素、圆点和细竖条 */
+.article-sort-title:before {
+  display: none !important;
+}
+
+.article-sort-title:after {
+  display: none !important;
+}
+
+
+/* 3. 去除.article-sort-item样式左侧的装饰性元素、圆点 */
+.article-sort-item:before {
+  display: none !important;
+}
+
+/* 4. 去除.year 类样式左侧的装饰性元素、圆点 */
+.article-sort-item.year:before {
+  display: none !important;
+}

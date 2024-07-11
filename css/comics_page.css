@@ -1,11 +1,11 @@
-.author-content-item.single.like-movie {
+.author-content-item.single.like-comic {
     height: 19rem;
     background: url(https://自行补充图片背景链接) no-repeat top;
     background-size: cover;
     color: var(--Jay-white);
     overflow: hidden;
 }
-.hexo-douban-item {
+.hexo-bilibili-item {
     border-bottom: none !important;
     background-color: #ffffff; /* 使用纯白色作为卡片背景 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 使用浅灰色的阴影 */
@@ -19,19 +19,19 @@
 }
 
 @media screen and (min-width: 1300px) {
-    .hexo-douban-item {
+    .hexo-bilibili-item {
         width: 32%;
     }
 }
 
-#hexo-douban-item3 {
+#hexo-bilibili-item3 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.hexo-douban-header {   /* 新添加顶部文字框 */
+.hexo-bilibili-header {   /* 新添加顶部文字框 */
     font-size: 1.2rem; /* 调整标题字号为1.2rem，您可以根据需要调整这个数值 */
     font-style: italic; /* 设置字体为斜体 */
     font-weight: bold; /* 设置字体为粗体 */
@@ -41,20 +41,20 @@
 }
 
 
-.hexo-douban-item .hexo-douban-picture a {
+.hexo-bilibili-item .hexo-bilibili-picture a {
     padding: 0 !important;
 }
 
-.hexo-douban-item .hexo-douban-picture img {
+.hexo-bilibili-item .hexo-bilibili-picture img {
     margin: 0px !important;
     height: 100% !important;
 }
 
-.hexo-douban-tabs {
+.hexo-bilibili-tabs {
     display: none;
 }
 
-.hexo-douban-title a {
+.hexo-bilibili-title a {
     color: #000000 !important; /* 设置链接的默认颜色为黑色 */
     padding: 0 !important;
     border-bottom: 0px !important;
@@ -63,18 +63,18 @@
     border-bottom: 0px !important;
 }
 
-.hexo-douban-title {
+.hexo-bilibili-title {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
-.hexo-douban-title a:hover {       /*去除了两个!important，也没有重新设置颜色*/
+.hexo-bilibili-title a:hover {       /*去除了两个!important，也没有重新设置颜色*/
     color: var(--Jay-lighttext);
     background: var(--Jay-none);
 }
 
-.hexo-douban-pagination {
+.hexo-bilibili-pagination {
     margin: auto;
     width: 100%;
     display: flex;
@@ -82,34 +82,34 @@
     align-items: center;
 }
 
-span.hexo-douban-pagenum {
+span.hexo-bilibili-pagenum {
     margin: 0 0.5rem;
 }
 
-.hexo-douban-title {     /*调整了字号和行高，设置了颜色为黑色，字体加粗*/
+.hexo-bilibili-title {     /*调整了字号和行高，设置了颜色为黑色，字体加粗*/
     font-size: 1.3rem;
     line-height: 1.3;
     color: #000000;
     font-weight: 600; /* 或者 font-weight: 700; */
 }
 
-.hexo-douban-title a {
+.hexo-bilibili-title a {
     padding: 0 !important;
 }
 
-.hexo-douban-info {       /*调整了info的位置（略微左移）*/
+.hexo-bilibili-info {       /*调整了info的位置（略微左移）*/
     padding-left: 110px !important;
     margin-right: 0.5rem;
 }
 
-.hexo-douban-meta {       /*微调字号和上间距*/
+.hexo-bilibili-meta {       /*微调字号和上间距*/
     font-size: 0.8rem !important;
     color: var(--Jay-secondtext);
     margin-top: 0.3rem;
     line-height: 1.05;
 }
 
-.hexo-douban-director {       /*增加导演，限定一行*/
+.hexo-bilibili-director {       /*增加导演，限定一行*/
     font-size: 0.8rem !important;
     color: var(--Jay-secondtext);
     margin-top: 0.3rem;
@@ -121,14 +121,14 @@ span.hexo-douban-pagenum {
     -webkit-box-orient: vertical;
 }
 
-.hexo-douban-region {       /*增加地区*/
+.hexo-bilibili-region {       /*增加地区*/
     font-size: 0.8rem !important;
     color: var(--Jay-secondtext);
     margin-top: 0.3rem;
     line-height: 1.05;
 }
 
-.hexo-douban-comments {
+.hexo-bilibili-comments {
     line-height: 1.2;
     margin-top: 0.5rem;
     font-size: 0.8rem !important;
@@ -139,17 +139,17 @@ span.hexo-douban-pagenum {
     -webkit-box-orient: vertical;
 }
 
-.hexo-douban-picture {
+.hexo-bilibili-picture {
     height: 100%;
     top: 0 !important;
     padding: 10px 0 10px 10px;
 }
 
-.hexo-douban-picture a img {
+.hexo-bilibili-picture a img {
     border-radius: 8px !important;
 }
 
-.hexo-douban-button {
+.hexo-bilibili-button {
     width: 4rem;
     height: 2rem;
     line-height: 1.9rem;
