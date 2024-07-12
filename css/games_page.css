@@ -1,0 +1,163 @@
+.author-content-item.single.like-game {
+    height: 19rem;
+    background: url(https://自行补充图片背景链接) no-repeat top;
+    background-size: cover;
+    color: var(--Jay-white);
+    overflow: hidden;
+}
+.hexo-steam-item {
+    border-bottom: none !important;
+    background-color: #ffffff; /* 使用纯白色作为卡片背景 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 使用浅灰色的阴影 */
+    border: var(--style-border);
+    border-radius: 12px;
+    margin: 8px 0;
+    height: 160px;
+    min-height: 160px !important;
+    width: calc(50% - 16px);   /* 调整为两列布局，考虑到 margin */
+    overflow: hidden;
+}
+
+@media screen and (min-width: 1300px) {
+    .hexo-steam-item {
+        width: 32%;
+    }
+}
+
+#hexo-steam-item3 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.hexo-steam-header {   /* 新添加顶部文字框 */
+    font-size: 1.2rem; /* 调整标题字号为1.2rem，您可以根据需要调整这个数值 */
+    font-style: italic; /* 设置字体为斜体 */
+    font-weight: bold; /* 设置字体为粗体 */
+    width: 100%; /* 确保顶部容器宽度铺满父容器 */
+    padding: 20px; /* 调整顶部容器的内边距 */
+    box-sizing: border-box; /* 确保盒子模型计算正确 */
+}
+
+
+.hexo-steam-item .hexo-steam-picture a {
+    padding: 0 !important;
+}
+
+.hexo-steam-item .hexo-steam-picture img {
+    margin: 0px !important;
+    height: 100% !important;
+}
+
+.hexo-steam-tabs {
+    display: none;
+}
+
+.hexo-steam-title a {
+    color: #000000 !important; /* 设置链接的默认颜色为黑色 */
+    padding: 0 !important;
+    border-bottom: 0px !important;
+    text-decoration: none; /* 去除链接的下划线 */
+    transition: color 0.2s; /* 添加颜色过渡效果 */
+    border-bottom: 0px !important;
+}
+
+.hexo-steam-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.hexo-steam-title a:hover {       /*去除了两个!important，也没有重新设置颜色*/
+    color: var(--Jay-lighttext);
+    background: var(--Jay-none);
+}
+
+.hexo-steam-pagination {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span.hexo-steam-pagenum {
+    margin: 0 0.5rem;
+}
+
+.hexo-steam-title {     /*调整了字号和行高，设置了颜色为黑色，字体加粗*/
+    font-size: 1.3rem;
+    line-height: 1.3;
+    color: #000000;
+    font-weight: 600; /* 或者 font-weight: 700; */
+}
+
+.hexo-steam-title a {
+    padding: 0 !important;
+}
+
+.hexo-steam-info {       /*调整了info的位置（略微左移）*/
+    padding-left: 110px !important;
+    margin-right: 0.5rem;
+}
+
+.hexo-steam-meta {       /*微调字号和上间距*/
+    font-size: 0.8rem !important;
+    color: var(--Jay-secondtext);
+    margin-top: 0.3rem;
+    line-height: 1.05;
+}
+
+.hexo-steam-director {       /*增加导演，限定一行*/
+    font-size: 0.8rem !important;
+    color: var(--Jay-secondtext);
+    margin-top: 0.3rem;
+    line-height: 1.05;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.hexo-steam-region {       /*增加地区*/
+    font-size: 0.8rem !important;
+    color: var(--Jay-secondtext);
+    margin-top: 0.3rem;
+    line-height: 1.05;
+}
+
+.hexo-steam-comments {
+    line-height: 1.2;
+    margin-top: 0.5rem;
+    font-size: 0.8rem !important;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.hexo-steam-picture {
+    height: 100%;
+    top: 0 !important;
+    padding: 10px 0 10px 10px;
+}
+
+.hexo-steam-picture a img {
+    border-radius: 8px !important;
+}
+
+.hexo-steam-button {
+    width: 4rem;
+    height: 2rem;
+    line-height: 1.9rem;
+    border-radius: 8px !important;
+    background: var(--Jay-card-bg);
+    box-shadow: var(--Jay-shadow-lightblack);
+    border: var(--style-border);
+    margin: 0 0.2rem;
+    border-bottom: var(--style-border) !important;
+}
+

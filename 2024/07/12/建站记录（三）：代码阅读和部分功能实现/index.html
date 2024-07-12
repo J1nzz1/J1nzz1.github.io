@@ -1,0 +1,573 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>建站记录（三）：代码阅读和部分功能实现 | J1nz's Blog</title><meta name="author" content="J1nz"><meta name="copyright" content="J1nz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="对项目源码进行了一些改动，到这里就阶段性完成啦，开始把精力放在论文上！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="建站记录（三）：代码阅读和部分功能实现">
+<meta property="og:url" content="https://j1nzz1.github.io/2024/07/12/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E5%92%8C%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="J1nz&#39;s Blog">
+<meta property="og:description" content="对项目源码进行了一些改动，到这里就阶段性完成啦，开始把精力放在论文上！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/6691621dd9c307b7e9220042.jpg">
+<meta property="article:published_time" content="2024-07-12T18:01:34.000Z">
+<meta property="article:modified_time" content="2024-07-12T17:22:32.528Z">
+<meta property="article:author" content="J1nz">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Butterfly">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="主题美化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/6691621dd9c307b7e9220042.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://j1nzz1.github.io/2024/07/12/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E5%92%8C%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="/css/hover_animation.css"><link rel="stylesheet" href="/css/menu_mid.css"><link rel="stylesheet" href="/css/new_post.css"><link rel="stylesheet" href="/css/search_hide.css"><link rel="stylesheet" href="/css/site_icon.css"><link rel="stylesheet" href="/css/movies_page.css"><link rel="stylesheet" href="/css/comics_page.css"><link rel="stylesheet" href="/css/before_hide.css"><link rel="stylesheet" href="/css/books_page.css"><link rel="stylesheet" href="/css/games_page.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"WOURYZ5KW7","apiKey":"de7ae43a5b620a11526b973c29243b1c","indexName":"Index","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '建站记录（三）：代码阅读和部分功能实现',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-12 17:22:32'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
+  }
+})()</script><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/6691621dd9c307b7e9220042.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="J1nz's Blog"><img class="site-icon" src="https://pic.imgdb.cn/item/668d71cdd9c307b7e9b16501.png" alt="Logo"/><span class="site-name">J1nz's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">建站记录（三）：代码阅读和部分功能实现</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-12T18:01:34.000Z" title="发表于 2024-07-12 18:01:34">2024-07-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-12T17:22:32.528Z" title="更新于 2024-07-12 17:22:32">2024-07-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3/">博客相关</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="建站记录（三）：代码阅读和部分功能实现"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>对项目架构有了大致了解之后就可以根据自己想要修改的部分去有目的性地寻找文件了。在建站记录（一）中遗留了一些未实现功能，大多需要对项目源码进行更改，因此以实现这些功能为导向进行代码阅读和修改就是近期的目标。</p>
+</blockquote>
+<h1 id="代码泛读"><a href="#代码泛读" class="headerlink" title="代码泛读"></a>代码泛读</h1><details>
+  <summary>点击展开</summary>
+
+<h2 id="全局样式-index-styl"><a href="#全局样式-index-styl" class="headerlink" title="全局样式  index.styl"></a>全局样式  index.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_global&#x2F;index.styl </p>
+</blockquote>
+<ul>
+<li><h3 id="页面基础样式"><a href="#页面基础样式" class="headerlink" title="页面基础样式"></a>页面基础样式</h3></li>
+</ul>
+<p>body 元素设置了页面的基本样式，包括背景色、字体颜色、字体大小等。<br><strong>定义了滚动条在不同浏览器中的样式</strong>，确保用户体验一致。</p>
+<ul>
+<li><h3 id="元素样式定义"><a href="#元素样式定义" class="headerlink" title="元素样式定义"></a>元素样式定义</h3></li>
+</ul>
+<p>h1 到 h6 标题的样式定义了字体重量、颜色和上下间距。<br>表格和表头样式的定义，包括边框、内边距和背景色。<br><strong>选中文本时的样式定义</strong>，如背景色和文字颜色。</p>
+<ul>
+<li><h3 id="链接和按钮样式"><a href="#链接和按钮样式" class="headerlink" title="链接和按钮样式"></a>链接和按钮样式</h3></li>
+</ul>
+<p><strong>链接和按钮样式的定义，包括颜色、悬停效果和过渡动画</strong>，确保用户可以清晰地识别链接和按钮。</p>
+<ul>
+<li><h3 id="引用块样式"><a href="#引用块样式" class="headerlink" title="引用块样式"></a>引用块样式</h3></li>
+</ul>
+<p><strong>引用块的样式定义了边框、背景色、文本颜色和尾注样式</strong>，使引用内容在页面中突出显示。</p>
+<blockquote>
+<details>
+  <summary>其他功能</summary>
+
+<ul>
+<li><h3 id="全局样式变量定义"><a href="#全局样式变量定义" class="headerlink" title="全局样式变量定义"></a>全局样式变量定义</h3></li>
+</ul>
+<p>使用 :root 定义了一系列全局变量，如颜色、背景色、按钮样式、字体等，这些变量可以在整个样式表&gt; &gt; 中重复使用，方便维护和修改。</p>
+<ul>
+<li><h3 id="图片和懒加载效果"><a href="#图片和懒加载效果" class="headerlink" title="图片和懒加载效果"></a>图片和懒加载效果</h3></li>
+</ul>
+<p>对图片的处理，包括未加载时的透明度处理，以及懒加载效果的模糊和明亮度调整。</p>
+</details>
+</blockquote>
+<h2 id="侧边栏-aside-styl"><a href="#侧边栏-aside-styl" class="headerlink" title="侧边栏  aside.styl"></a>侧边栏  aside.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;aside.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="个人信息卡片"><a href="#个人信息卡片" class="headerlink" title="个人信息卡片"></a>个人信息卡片</h3></li>
+</ul>
+<p><strong>作者信息</strong>：包括作者名称、描述的字体样式和边距设置。<br><strong>社交图标</strong>：定义了社交图标的样式和悬停效果。<br><strong>按钮</strong>：包含一个按钮，定义了背景颜色、文字颜色、对齐方式、行高及悬停效果。</p>
+<ul>
+<li><h3 id="标签云和列表"><a href="#标签云和列表" class="headerlink" title="标签云和列表"></a>标签云和列表</h3></li>
+</ul>
+<p><strong>标签云</strong>：定义了标签的内边距和悬停时的颜色变化。<br><strong>侧边栏列表</strong>：包括最近文章、最新评论、分类、标签、文档、网站信息等列表，定义了各个列表项的布局、内外边距及悬停效果。</p>
+<ul>
+<li><h3 id="TOC-组件"><a href="#TOC-组件" class="headerlink" title="TOC 组件"></a>TOC 组件</h3></li>
+</ul>
+<p><strong>固定位置</strong>：在大屏幕和小屏幕上的不同位置和样式。<br><strong>内容滚动</strong>：目录内容支持滚动，并根据屏幕宽度调整最大高度。<br><strong>展开和折叠</strong>：目录项可以展开和折叠，<strong>悬停时会改变颜色</strong>。</p>
+<ul>
+<li><h3 id="头像样式"><a href="#头像样式" class="headerlink" title="头像样式"></a>头像样式</h3></li>
+</ul>
+<p><strong>圆形头像</strong>：定义了头像的圆形样式和<strong>悬停时的旋转效果</strong>。</p>
+<ul>
+<li><h3 id="网站信息"><a href="#网站信息" class="headerlink" title="网站信息"></a>网站信息</h3></li>
+</ul>
+<p><strong>表格布局</strong>：网站信息部分使用表格布局，定义了<strong>文字颜色和悬停时的颜色变化</strong>。</p>
+<blockquote>
+<details>
+  <summary>其他功能</summary>
+
+<ul>
+<li><h3 id="侧边栏布局"><a href="#侧边栏布局" class="headerlink" title="侧边栏布局"></a>侧边栏布局</h3></li>
+</ul>
+<p><strong>默认宽度</strong>：26%<br><strong>屏幕宽度变化</strong>：根据屏幕宽度调整侧边栏宽度和内边距：<br>    大于900px时，侧边栏宽度保持26%，根据配置调整内边距。<br>    小于等于900px时，侧边栏宽度为100%。</p>
+<ul>
+<li><h3 id="卡片组件"><a href="#卡片组件" class="headerlink" title="卡片组件"></a>卡片组件</h3></li>
+</ul>
+<p><strong>通用样式</strong>：卡片组件有统一的样式，包括相对定位、隐藏溢出内容、内外边距等。<br><strong>移动设备</strong>：在配置中禁止显示的卡片组件会在屏幕宽度小于768px时隐藏。<br><strong>特定样式</strong>：第一个卡片组件在不同屏幕宽度下有不同的上边距。</p>
+<ul>
+<li><h3 id="动画效果"><a href="#动画效果" class="headerlink" title="动画效果"></a>动画效果</h3></li>
+</ul>
+<p><strong>按钮移动动画</strong>：为按钮设置了一个左右移动的动画效果。<br><strong>目录展开和关闭动画</strong>：目录展开和关闭时有缩放动画效果。</p>
+<ul>
+<li><h3 id="响应式布局"><a href="#响应式布局" class="headerlink" title="响应式布局"></a>响应式布局</h3></li>
+</ul>
+<p><strong>隐藏侧边栏</strong>：在大屏幕上如果配置隐藏侧边栏，调整主内容的布局。<br><strong>页内组件排序</strong>：根据配置文件中的排序顺序，调整各个卡片组件在侧边栏内的显示顺序。</p>
+</details>
+</blockquote>
+<h2 id="右侧按钮-rightside-styl"><a href="#右侧按钮-rightside-styl" class="headerlink" title="右侧按钮  rightside.styl"></a>右侧按钮  rightside.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;rightside.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="按钮样式"><a href="#按钮样式" class="headerlink" title="按钮样式"></a>按钮样式</h3></li>
+</ul>
+<p><strong>按钮样式包括背景、颜色、悬停效果等定义。</strong></p>
+<blockquote>
+<details>
+  <summary>其他功能</summary>
+
+<ul>
+<li><h3 id="位置和动画"><a href="#位置和动画" class="headerlink" title="位置和动画"></a>位置和动画</h3></li>
+</ul>
+<p>侧边栏初始位置在视口右侧外部，通过过渡动画展示。<br>通过类 .rightside-show 控制显示时的透明度和位移动画。</p>
+<ul>
+<li><h3 id="配置面板"><a href="#配置面板" class="headerlink" title="配置面板"></a>配置面板</h3></li>
+</ul>
+<p>#rightside-config-hide 是配置面板，初始隐藏在侧边栏外部，展开时通过动画显示。</p>
+<ul>
+<li><h2 id="响应式设计"><a href="#响应式设计" class="headerlink" title="响应式设计"></a>响应式设计</h2></li>
+</ul>
+<p>#mobile-toc-button 和 #hide-aside-btn 根据屏幕宽度响应显示或隐藏。</p>
+<ul>
+<li><h2 id="滚动百分比显示"><a href="#滚动百分比显示" class="headerlink" title="滚动百分比显示"></a>滚动百分比显示</h2></li>
+</ul>
+<p>#go-up 元素和 .scroll-percent 类用于显示页面滚动百分比，通过动画效果控制显示状态。</p>
+</details>
+</blockquote>
+<h2 id="文章-post-styl"><a href="#文章-post-styl" class="headerlink" title="文章  post.styl"></a>文章  post.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;post.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="链接样式"><a href="#链接样式" class="headerlink" title="链接样式"></a>链接样式</h3></li>
+</ul>
+<p><strong>设置链接颜色和鼠标悬停下划线效果。</strong></p>
+<blockquote>
+<details>
+  <summary>其他功能</summary>
+
+<ul>
+<li><h3 id="标题样式"><a href="#标题样式" class="headerlink" title="标题样式"></a>标题样式</h3></li>
+</ul>
+<p>设置了过渡效果和鼠标悬停时的动画变化。<br>每个标题前面加上了图标，并在悬停时改变图标颜色。</p>
+<ul>
+<li><h3 id="文本内容"><a href="#文本内容" class="headerlink" title="文本内容"></a>文本内容</h3></li>
+</ul>
+<p>文本段落有一定的边距和行距。<br>列表项的标记符号和悬停效果。<br>图像和嵌入框架在加载和悬停时有过渡效果。</p>
+<ul>
+<li><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3></li>
+</ul>
+<p>定义了键盘输入的样式，包括边框、背景和字体样式。</p>
+<ul>
+<li><h3 id="其他样式"><a href="#其他样式" class="headerlink" title="其他样式"></a>其他样式</h3></li>
+</ul>
+<p>根据配置选项对页面元素进行美化，例如文本对齐、锚点点击滚动效果等。<br>特定类别的文章内容有额外的样式定义，如标签、分享、版权声明和过期通知等。</p>
+</details>
+</blockquote>
+<h2 id="分页控件-pagination-styl"><a href="#分页控件-pagination-styl" class="headerlink" title="分页控件  pagination.styl"></a>分页控件  pagination.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;pagination.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="分页控件样式"><a href="#分页控件样式" class="headerlink" title="分页控件样式"></a>分页控件样式</h3></li>
+</ul>
+<p>设置分页控件的顶部边距和居中对齐。<br><strong>定义当前活动页码的背景色和文字颜色。</strong><br>将分页信息绝对定位在页面顶部中间，并设置宽度和垂直居中效果。<br>样式化前后文章信息和文章分页链接，包括在小屏幕下的响应式布局。</p>
+<ul>
+<li><h3 id="布局样式"><a href="#布局样式" class="headerlink" title="布局样式"></a>布局样式</h3></li>
+</ul>
+<p>定义了最近文章部分和其他 div 元素中的分页样式。<br><strong>设置了每个页码元素的显示方式和悬停效果</strong>，确保用户体验一致性和视觉吸引力。</p>
+<h2 id="评论-comment-styl"><a href="#评论-comment-styl" class="headerlink" title="评论  comment.styl"></a>评论  comment.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;comment.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="评论头部样式"><a href="#评论头部样式" class="headerlink" title="评论头部样式"></a>评论头部样式</h3></li>
+</ul>
+<p>设置评论头部的底部边距和清除浮动。<br>定义评论标题的显示方式和样式。<br>控制评论切换按钮的布局和样式，根据配置条件显示不同的样式效果。</p>
+<ul>
+<li><h3 id="评论内容容器样式"><a href="#评论内容容器样式" class="headerlink" title="评论内容容器样式"></a>评论内容容器样式</h3></li>
+</ul>
+<p>使用动画效果控制评论内容切换时的过渡效果。<br>根据类名 .move 控制评论切换按钮和评论内容的状态变化，实现视觉上的切换效果。</p>
+<h2 id="页脚-footer-styl"><a href="#页脚-footer-styl" class="headerlink" title="页脚  footer.styl"></a>页脚  footer.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;footer.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="网页底部"><a href="#网页底部" class="headerlink" title="网页底部"></a>网页底部</h3></li>
+</ul>
+<p>相对定位，背景色为 $light-blue。<br>可能会添加一个全屏遮罩效果的伪元素。</p>
+<ul>
+<li><h3 id="包裹容器"><a href="#包裹容器" class="headerlink" title="包裹容器"></a>包裹容器</h3></li>
+</ul>
+<p>相对定位，设置了内边距。<br>文本颜色为灰色，居中显示。<br>链接颜色和悬停样式的定义。<br>特定的类 .footer-separator 用于调整链接之间的间隔。<br>.icp-icon 类用于调整图标的样式，使其垂直对齐至文本底部。</p>
+<h2 id="头部-head-styl"><a href="#头部-head-styl" class="headerlink" title="头部  head.styl"></a>头部  head.styl</h2><blockquote>
+<p>项目根目录&#x2F;themes&#x2F;butterfly&#x2F;source&#x2F;css&#x2F;_layout&#x2F;footer.styl</p>
+</blockquote>
+<ul>
+<li><h3 id="页面头部"><a href="#页面头部" class="headerlink" title="页面头部"></a>页面头部</h3></li>
+</ul>
+<p>设置页面头部背景、高度、文本样式和滚动动画效果。<br>根据配置项添加背景遮罩效果。</p>
+<ul>
+<li><h3 id="页面导航"><a href="#页面导航" class="headerlink" title="页面导航"></a>页面导航</h3></li>
+</ul>
+<p>设置页面导航栏样式，包括背景、高度、字体样式和交互效果。<br>包含菜单项的样式和下拉菜单的动画效果。</p>
+<ul>
+<li><h3 id="页面主体和文章"><a href="#页面主体和文章" class="headerlink" title="页面主体和文章"></a>页面主体和文章</h3></li>
+</ul>
+<p>定义了页面和文章内容的布局样式。<br>包括标题、元数据（如日期、作者等）、文字样式、响应式调整等设置。</p>
+<blockquote>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>到这里开始我对代码有了基本的熟悉，不再需要为读而读了，可以尝试定位自己实现功能需要读的代码在哪里，然后精读相关代码。</p>
+</blockquote>
+</details>
+
+
+
+
+
+
+<h1 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h1><p>这两天有点昏头转向了，感觉脑子不够用。睡了一觉醒来甚至连自己的CSS在哪引入都忘了，找了好几分钟才找到，干。</p>
+<h2 id="清单页面"><a href="#清单页面" class="headerlink" title="清单页面"></a>清单页面</h2><p>参考<a target="_blank" rel="noopener" href="https://blog.lvhrn.cn/posts/ecf7842c.html">JayHrn</a>，实现了清单界面，包括影视、番剧、书籍。游戏和音乐界面我打算单独做一些独特的设计，会在后面单独罗列。以创建影视清单页面为例，</p>
+<blockquote>
+<ul>
+<li>在<code>themes/butterfly/layout/includes/page/</code>目录下新建<code>movies.pug</code>文件。</li>
+<li>在<code>themes/butterfly/layout/page.pug</code>文件中引入创建的页面。</li>
+<li>在博客根目录新建<code>source/_data/movies.yml</code>文件，并手动添加内容。</li>
+<li>新建<code>source/css/movies_page.css</code>文件，通过css注入给页面添加样式。</li>
+</ul>
+</blockquote>
+<p>由于主题全局样式有区别，我基于JayHrn佬的源码进行了微调，把作品卡片布局从三列调整成了两列，并调整字号、行高、间距、卡片内容布局、卡片颜色和阴影到我满意的效果。修改主要集中在 movies_page.css 和 movies.pug 这两个文件中。由于这个改动不是基于butterfly主题自带的文件，而是基于按JayHrn的教程新建的文件，所以就不贴在这里了，可以直接去看文件，我在每一处修改的地方都加上了注释。</p>
+<p>在这个过程中我逐渐熟悉了css文件和pug文件的代码结构，熟悉了浏览器开发者工具的用法，也完成了又一个第一次：第一次不是 c + v 别人的源码，而是一个字母一个字母敲出来一个容器，塞进网页，实现功能。虽然微不足道，但是也确确实实有一种丰收的喜悦，不亚于第一次看到终端输出 “Hello world” 的那一瞬间。</p>
+<h2 id="归档页美化"><a href="#归档页美化" class="headerlink" title="归档页美化"></a>归档页美化</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css_page\archives.styl</p>
+</blockquote>
+<p>我想要去除的文章列表前方的丑丑的圆形装饰和条纹都在这个文件中被定义，原代码如下：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.article-sort</span></span><br><span class="line">  &amp;-title</span><br><span class="line">    <span class="selector-pseudo">&amp;:before</span>   <span class="comment">// 标题前置伪元素样式</span></span><br><span class="line">      ···</span><br><span class="line">    <span class="selector-pseudo">&amp;:after</span>    <span class="comment">// 标题后置伪元素样式</span></span><br><span class="line">      ···</span><br><span class="line">  &amp;-item</span><br><span class="line">    <span class="selector-pseudo">&amp;:before</span>   <span class="comment">// 条目前置伪元素样式</span></span><br><span class="line">      ···</span><br><span class="line">    &amp;<span class="selector-class">.year</span>   <span class="comment">// 年份条目样式</span></span><br><span class="line">      <span class="selector-pseudo">&amp;:before</span></span><br><span class="line">        ···</span><br></pre></td></tr></table></figure>
+
+<p>我没有直接修改原代码，而是通过注入 <strong>before_hide.css</strong> 来把它们都隐藏。其他美化以后再说。</p>
+<h2 id="标签页美化"><a href="#标签页美化" class="headerlink" title="标签页美化"></a>标签页美化</h2><p>我目前看到的与标签功能相关的文件总共有五个：</p>
+<blockquote>
+<p>项目根目录\themes\butterfly\source\css_page\tags.styl<br>项目根目录\themes\butterfly\layout\tag.pug<br>项目根目录\themes\butterfly\layout\includes\page\tags.pug<br>项目根目录\themes\butterfly\layout\includes\widget\card_tags.pug<br>项目根目录\themes\butterfly\scripts\helpers\page.js</p>
+</blockquote>
+<p>对它们的代码进行阅读，它们的功能分别是：</p>
+<ul>
+<li>tags.styl：定义标签云页面的样式，包括标签的排列方式、悬停效果、字体大小和颜色。</li>
+<li>tag.pug：控制单个标签页面的布局和内容，显示包含某个标签的所有文章列表。</li>
+<li>tags.pug：控制标签云页面的布局和内容，生成包含所有标签的页面。</li>
+<li>card_tags.pug：控制侧边栏标签云小组件的布局和内容，根据配置决定是否显示标签云。</li>
+<li>page.js：定义生成标签云的 cloudTags 函数，设置标签的字号、颜色等样式。</li>
+</ul>
+<p>我想要实现的功能为</p>
+<ol>
+<li>把标签的字号修改为1.2em（参考<a target="_blank" rel="noopener" href="https://fe32.top/tags/">Tzy的标签页</a>），字体颜色修改为黑色，并在标签后面显示符号“#”加上该标签下文章数量。这里只需要修改 <strong>page.js</strong> 文件。</li>
+<li>调整标签云页面的样式，包括调整内外边距、添加边框、边框圆角和阴影、行高（同样参考Tzy的标签样式）。这里只需要修改 <strong>tags.styl</strong> 文件</li>
+</ol>
+<h3 id="page-js-文件代码修改如下："><a href="#page-js-文件代码修改如下：" class="headerlink" title="page.js 文件代码修改如下："></a><strong>page.js</strong> 文件代码修改如下：</h3><p>（通过diff格式代码块体现修改内容）</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hexo.extend.helper.register(&#x27;cloudTags&#x27;, function (options = &#123;&#125;) &#123;</span><br><span class="line"><span class="deletion">-    // 构建样式字符串，设置字体大小和随机生成的颜色</span></span><br><span class="line"><span class="deletion">-    let style = `font-size: $&#123;parseFloat(size.toFixed(2))&#125;$&#123;unit&#125;;`</span></span><br><span class="line"><span class="deletion">-    // 随机生成颜色，保证颜色值在 rgb(0, 0, 0) 到 rgb(200, 200, 200) 范围内</span></span><br><span class="line"><span class="deletion">-    const color = &#x27;rgb(&#x27; + Math.floor(Math.random() * 201) + &#x27;, &#x27; + Math.floor(Math.random() * 201) + &#x27;, &#x27; + Math.floor(Math.random() * 201) + &#x27;)&#x27;</span></span><br><span class="line"><span class="deletion">-    style += ` color: $&#123;color&#125;`</span></span><br><span class="line"><span class="deletion">-    result += `&lt;a href=&quot;$&#123;env.url_for(tag.path)&#125;&quot; style=&quot;$&#123;style&#125;&quot;&gt;$&#123;tag.name&#125;&lt;/a&gt;`</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+    let style = `font-size: 1.2em;`   //字体大小修改为1.2em</span></span><br><span class="line"><span class="addition">+    style += ` color: black;`   //字体颜色修改为黑色</span></span><br><span class="line"><span class="addition">+    result += `&lt;a href=&quot;$&#123;env.url_for(tag.path)&#125;&quot; style=&quot;$&#123;style&#125;&quot;&gt;$&#123;tag.name&#125; #  $&#123;tag.length&#125;&lt;/a&gt;`   //标签后显示文章数量</span></span><br><span class="line">  &#125;)</span><br><span class="line">  return result</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="tags-styl-文件修改如下："><a href="#tags-styl-文件修改如下：" class="headerlink" title="tags.styl 文件修改如下："></a><strong>tags.styl</strong> 文件修改如下：</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.tag-cloud</span><br><span class="line">  &amp;-list</span><br><span class="line">    a</span><br><span class="line">      display: inline-block;  // 设置为内联块级元素，使得链接可以并排显示</span><br><span class="line"><span class="deletion">-      padding: 0 8px;         // 左右内边距为8像素，上下内边距为0</span></span><br><span class="line"><span class="addition">+      padding: 3.36px 10px  // 调整内边距</span></span><br><span class="line"><span class="addition">+      margin: 8.4px 8.4px  // 调整外边距</span></span><br><span class="line"><span class="addition">+      border: 1px solid #ccc  // 添加边框</span></span><br><span class="line"><span class="addition">+      border-radius: 12px  // 圆角边框</span></span><br><span class="line"><span class="addition">+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  // 添加阴影</span></span><br><span class="line"><span class="addition">+      line-height: 33.6px;  // 调整行高</span></span><br><span class="line">      transition: all .3s;    // 添加所有属性的过渡效果，时长为0.3秒</span><br></pre></td></tr></table></figure>
+
+<p>如果要完全复刻Tzy或者JayHrn的效果，应该还需要给文章数量（tag.length）设置一个容器，并设置相应样式，以及修改 hover 效果。这些东西暂时不想整，目前为止的效果我就可以接受了。</p>
+<p>值得一提的是，单个标签页好像是沿用的归档页的布局，所以在上一步隐藏掉归档页的装饰性圆形和条形之后在单个标签页也没有了。</p>
+<h2 id="分类页美化"><a href="#分类页美化" class="headerlink" title="分类页美化"></a>分类页美化</h2><p>同样的，先找到和分类页相关的文件，如下所示</p>
+<blockquote>
+<p>项目根目录\themes\butterfly\source\css_page\categories.styl<br>项目根目录\themes\butterfly\layout\includes\page\categories.pug<br>项目根目录\themes\butterfly\layout\category.pug</p>
+</blockquote>
+<p>功能分别为：</p>
+<ul>
+<li>categories.styl: 这是一个样式文件，用于定义分类页面的样式。它主要控制以下元素的外观：分类标题的字体大小、分类列表的样式、分类名称的颜色及悬停效果、分类文章计数的样式、分类列表的缩进和布局</li>
+<li>categories.pug: 这是一个非常简单的模板文件，它只包含一行代码，用于渲染分类列表。list_categories()是一个 Hexo 的辅助函数，用于生成所有分类的列表。</li>
+<li>category.pug:<br>这是分类页面的主要模板文件。它定义了两种不同的分类页面布局：如果 theme.category_ui 设置为 ‘index’，它会使用类似于首页的文章列表布局。否则，它会使用一个排序的文章列表布局，显示特定分类的文章。</li>
+</ul>
+<p>我希望分类页样式能和标签页保持一致，修改如下：</p>
+<h3 id="修改-categories-pug："><a href="#修改-categories-pug：" class="headerlink" title="修改 categories.pug："></a>修改 categories.pug：</h3><figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-.category-lists!= list_categories()</span></span><br><span class="line"><span class="addition">+.category-cloud-list.is-center</span></span><br><span class="line"><span class="addition">+  !=cloudCategories(&#123;source: site.categories, orderby: page.orderby || &#x27;random&#x27;, order: page.order || 1, minfontsize: 1.2, maxfontsize: 2.1, limit: 0, unit: &#x27;em&#x27;&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="在-page-js-中添加-cloudCategories-函数："><a href="#在-page-js-中添加-cloudCategories-函数：" class="headerlink" title="在 page.js 中添加 cloudCategories 函数："></a>在 page.js 中添加 cloudCategories 函数：</h3><p>在 page.js 文件的末尾添加以下代码：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+hexo.extend.helper.register(&#x27;cloudCategories&#x27;, function (options = &#123;&#125;) &#123;</span></span><br><span class="line"><span class="addition">+  const env = this</span></span><br><span class="line"><span class="addition">+  let &#123; source, minfontsize, maxfontsize, limit, unit, orderby, order &#125; = options</span></span><br><span class="line"><span class="addition">+  unit = unit || &#x27;em&#x27;</span></span><br><span class="line"><span class="addition">+  let result = &#x27;&#x27;</span></span><br><span class="line"><span class="addition">+  if (limit &gt; 0) &#123;</span></span><br><span class="line"><span class="addition">+    source = source.limit(limit)</span></span><br><span class="line"><span class="addition">+  &#125;</span></span><br><span class="line"><span class="addition">+  source.sort(orderby, order).forEach(category =&gt; &#123;</span></span><br><span class="line"><span class="addition">+    let style = `font-size: 1.2em; color: black;`</span></span><br><span class="line"><span class="addition">+    result += `&lt;a href=&quot;$&#123;env.url_for(category.path)&#125;&quot; style=&quot;$&#123;style&#125;&quot;&gt;$&#123;category.name&#125; #$&#123;category.length&#125;&lt;/a&gt;`</span></span><br><span class="line"><span class="addition">+  &#125;)</span></span><br><span class="line"><span class="addition">+  return result</span></span><br><span class="line"><span class="addition">+&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-categories-styl："><a href="#修改-categories-styl：" class="headerlink" title="修改 categories.styl："></a>修改 categories.styl：</h3><p>将原文件完全替换</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-.category-lists</span></span><br><span class="line"><span class="deletion">-  .category-title</span></span><br><span class="line"><span class="deletion">-    font-size: 2.57em</span></span><br><span class="line"><span class="deletion">-    +maxWidth768()</span></span><br><span class="line"><span class="deletion">-      font-size: 2em</span></span><br><span class="line"><span class="deletion">-  .category-list</span></span><br><span class="line"><span class="deletion">-    margin-bottom: 0</span></span><br><span class="line"><span class="deletion">-    a</span></span><br><span class="line"><span class="deletion">-      color: var(--font-color)</span></span><br><span class="line"><span class="deletion">-      &amp;:hover</span></span><br><span class="line"><span class="deletion">-        color: $text-hover	</span></span><br><span class="line"><span class="deletion">-    .category-list-count</span></span><br><span class="line"><span class="deletion">-      margin-left: 8px</span></span><br><span class="line"><span class="deletion">-      color: $theme-meta-color</span></span><br><span class="line"><span class="deletion">-      &amp;:before</span></span><br><span class="line"><span class="deletion">-        content: &#x27;(&#x27;</span></span><br><span class="line"><span class="deletion">-      &amp;:after</span></span><br><span class="line"><span class="deletion">-        content: &#x27;)&#x27;</span></span><br><span class="line"><span class="deletion">-  ul</span></span><br><span class="line"><span class="deletion">-    padding: 0 0 0 20px</span></span><br><span class="line"><span class="deletion">-    @extend .list-beauty</span></span><br><span class="line"><span class="deletion">-    ul</span></span><br><span class="line"><span class="deletion">-      padding-left: 4px</span></span><br><span class="line"><span class="deletion">-    li</span></span><br><span class="line"><span class="deletion">-      position: relative</span></span><br><span class="line"><span class="deletion">-      margin: 1px 0/</span></span><br><span class="line"><span class="deletion">-      padding: .12em .4em .12em 1.4em</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+.category-cloud-list</span></span><br><span class="line"><span class="addition">+  a</span></span><br><span class="line"><span class="addition">+    display: inline-block</span></span><br><span class="line"><span class="addition">+    padding: 3.36px 10px</span></span><br><span class="line"><span class="addition">+    margin: 8.4px 8.4px</span></span><br><span class="line"><span class="addition">+    border: 1px solid #ccc</span></span><br><span class="line"><span class="addition">+    border-radius: 12px</span></span><br><span class="line"><span class="addition">+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)</span></span><br><span class="line"><span class="addition">+    transition: all .3s</span></span><br><span class="line"><span class="addition">+    line-height: 33.6px</span></span><br><span class="line"><span class="addition">+    &amp;:hover</span></span><br><span class="line"><span class="addition">+      color: $text-hover !important</span></span><br><span class="line"><span class="addition">+      transform: scale(1.1)</span></span><br><span class="line"><span class="addition">+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)</span></span><br><span class="line"><span class="addition">+    +maxWidth768()</span></span><br><span class="line"><span class="addition">+      zoom: .85</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+.category-title</span></span><br><span class="line"><span class="addition">+  font-size: 2.57em</span></span><br><span class="line"><span class="addition">+  +maxWidth768()</span></span><br><span class="line"><span class="addition">+    font-size: 2em</span></span><br><span class="line"></span><br><span class="line"><span class="addition">+h1.page-title</span></span><br><span class="line"><span class="addition">+  &amp; + .category-cloud-list</span></span><br><span class="line"><span class="addition">+    text-align: left</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="顶部导航栏字体"><a href="#顶部导航栏字体" class="headerlink" title="顶部导航栏字体"></a>顶部导航栏字体</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css_layout\head.styl</p>
+</blockquote>
+<p>一直觉得导航栏部分的字体有一点小，想改的稍微大一点。顶部导航栏相关的内容都在 <strong>head.styl</strong> 里，改动如下：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  .site-page</span><br><span class="line">    position: relative</span><br><span class="line">    padding-bottom: 6px</span><br><span class="line">    text-shadow: 1px 1px 2px rgba($dark-black, .3)</span><br><span class="line"><span class="deletion">-    font-size: .78em</span></span><br><span class="line"><span class="addition">+    font-size: 15px</span></span><br><span class="line">    cursor: pointer</span><br></pre></td></tr></table></figure>
+<p>之前曾经想把左边的logo和站名左移一些，把右边的搜索icon右移一些，后来觉得还是维持原样好看，就没动位置。</p>
+<h2 id="分页按钮颜色"><a href="#分页按钮颜色" class="headerlink" title="分页按钮颜色"></a>分页按钮颜色</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css\var.styl</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+$theme-paginator-color = #4a587f</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-$theme-paginator-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.paginator&#x27;) ? convert(hexo-config(&#x27;theme_color.paginator&#x27;)) : $strong-cyan</span></span><br><span class="line"><span class="addition">+$theme-paginator-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.paginator&#x27;) ? convert(hexo-config(&#x27;theme_color.paginator&#x27;)) : $theme-paginator-color</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="右下角按钮颜色"><a href="#右下角按钮颜色" class="headerlink" title="右下角按钮颜色"></a>右下角按钮颜色</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css\var.styl</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">-$btn-color = #fff</span></span><br><span class="line"><span class="addition">+$btn-color = #4a587f</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="主题颜色"><a href="#主题颜色" class="headerlink" title="主题颜色"></a>主题颜色</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css\var.styl</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// color</span><br><span class="line"><span class="addition">+$j1nz-theme-color = #9297a7</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-$theme-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.main&#x27;) ? convert(hexo-config(&#x27;theme_color.main&#x27;)) : $bright-blue</span></span><br><span class="line"><span class="addition">+$theme-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.main&#x27;) ? convert(hexo-config(&#x27;theme_color.main&#x27;)) : $j1nz-theme-color</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="被选字体颜色"><a href="#被选字体颜色" class="headerlink" title="被选字体颜色"></a>被选字体颜色</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css\var.styl</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+$j1nz-text-sel-color = #ff7c7c</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-$theme-text-selection-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.text_selection&#x27;) ? convert(hexo-config(&#x27;theme_color.text_selection&#x27;)) : $strong-cyan</span></span><br><span class="line"><span class="addition">+-$theme-text-selection-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.text_selection&#x27;) ? convert(hexo-config(&#x27;theme_color.text_selection&#x27;)) : $j1nz-text-sel-color</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="侧栏目录颜色"><a href="#侧栏目录颜色" class="headerlink" title="侧栏目录颜色"></a>侧栏目录颜色</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css\var.styl</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+$j1nz-toc-color = #d7d4f0</span></span><br><span class="line"></span><br><span class="line"><span class="deletion">-$theme-text-selection-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.text_selection&#x27;) ? convert(hexo-config(&#x27;theme_color.text_selection&#x27;)) : $strong-cyan</span></span><br><span class="line"><span class="addition">+$theme-toc-color = $themeColorEnable &amp;&amp; hexo-config(&#x27;theme_color.toc_color&#x27;) ? convert(hexo-config(&#x27;theme_color.toc_color&#x27;)) : $j1nz-toc-color</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="搜索栏左上角“搜索”的字号和颜色"><a href="#搜索栏左上角“搜索”的字号和颜色" class="headerlink" title="搜索栏左上角“搜索”的字号和颜色"></a>搜索栏左上角“搜索”的字号和颜色</h2><blockquote>
+<p>项目根目录\themes\butterfly\source\css_search\index.styl</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    .search-dialog-title</span><br><span class="line">      margin-right: 10px</span><br><span class="line"><span class="addition">+      color: #000000</span></span><br><span class="line"><span class="addition">+      font-size: 22px</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>回顾开始时提到的之前的未实现功能，有四项已经完成：</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 修改右下角图标颜色、页码按钮颜色、滚动条颜色等主题颜色。</li>
+<li><input checked="" disabled="" type="checkbox"> 调整顶部导航栏字体大小。</li>
+<li><input checked="" disabled="" type="checkbox"> 对归档、标签、分类页面进行美化。</li>
+<li><input checked="" disabled="" type="checkbox"> 完成清单页面的布置。</li>
+</ul>
+<p>有五项不是很重要，暂时延后，等什么时候想做了再做：</p>
+<ul>
+<li>部署评论功能，开通留言板。</li>
+<li>制作关于页面，制作历史版本记录页面。</li>
+<li>优化博客链接。</li>
+<li>修改网站加载动画。</li>
+<li>设置个性化页脚和徽标。</li>
+</ul>
+<p>有两项现在觉得不需要做了：<br><del>- 调整主页正文卡片宽度，调整顶部导航栏使其与正文左右侧对齐。</del><br><del>- 主页顶部轮播卡片。</del></p>
+<p>第一阶段的目标已经完成啦，网站基本算是搭起来了，接下来就要注重于个人提升和博客内容了。或者说这一直以来都是我的目标，网站本身反而是最不重要的。我只是把这里当作放我的杂谈、随笔、感悟的地方，记录美化的过程也只是方便以后再改的时候回来查阅。</p>
+<p>希望我可以顺顺利利把毕业论文写出来~</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://J1nzz1.github.io">J1nz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://j1nzz1.github.io/2024/07/12/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E5%92%8C%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">https://j1nzz1.github.io/2024/07/12/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E5%92%8C%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://J1nzz1.github.io" target="_blank">J1nz's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Hexo/">Hexo</a><a class="post-meta__tags" href="/tags/Butterfly/">Butterfly</a><a class="post-meta__tags" href="/tags/Github/">Github</a><a class="post-meta__tags" href="/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/">主题美化</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/6691621dd9c307b7e9220042.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" title="建站记录（一）"><img class="cover" src="https://pic.imgdb.cn/item/668dfb1dd9c307b7e9267522.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-09</div><div class="title">建站记录（一）</div></div></a></div><div><a href="/2024/07/10/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%B9butterfly%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%B6%E6%9E%84%E7%9A%84%E6%A2%B3%E7%90%86/" title="建站记录（二）：对butterfly项目的架构的梳理"><img class="cover" src="https://pic.imgdb.cn/item/668e7078d9c307b7e9bdda74.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-07-10</div><div class="title">建站记录（二）：对butterfly项目的架构的梳理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">J1nz</div><div class="author-info__description">爱是最高规格的抑制剂.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">3</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=484434695" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #4b4a48;"></i></a><a class="social-icon" href="weixin://contacts/profile/J1nz_aono" target="_blank" title="WeChat"><i class="fa-brands fa-weixin" style="color: #4b4a48;"></i></a><a class="social-icon" href="https://github.com/J1nzz1" target="_blank" title="Github"><i class="fab fa-github" style="color: #4b4a48;"></i></a><a class="social-icon" href="mailto:j1nzaono@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4b4a48;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%B3%9B%E8%AF%BB"><span class="toc-number">2.</span> <span class="toc-text">代码泛读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F-index-styl"><span class="toc-number">2.1.</span> <span class="toc-text">全局样式  index.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%9F%BA%E7%A1%80%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.1.1.</span> <span class="toc-text">页面基础样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%83%E7%B4%A0%E6%A0%B7%E5%BC%8F%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.2.</span> <span class="toc-text">元素样式定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%92%8C%E6%8C%89%E9%92%AE%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.1.3.</span> <span class="toc-text">链接和按钮样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E5%9D%97%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.1.4.</span> <span class="toc-text">引用块样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E6%A0%B7%E5%BC%8F%E5%8F%98%E9%87%8F%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">全局样式变量定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E5%92%8C%E6%87%92%E5%8A%A0%E8%BD%BD%E6%95%88%E6%9E%9C"><span class="toc-number">2.1.6.</span> <span class="toc-text">图片和懒加载效果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F-aside-styl"><span class="toc-number">2.2.</span> <span class="toc-text">侧边栏  aside.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E4%BF%A1%E6%81%AF%E5%8D%A1%E7%89%87"><span class="toc-number">2.2.1.</span> <span class="toc-text">个人信息卡片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E4%BA%91%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number">2.2.2.</span> <span class="toc-text">标签云和列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TOC-%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.3.</span> <span class="toc-text">TOC 组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%B4%E5%83%8F%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.2.4.</span> <span class="toc-text">头像样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%AB%99%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.5.</span> <span class="toc-text">网站信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F%E5%B8%83%E5%B1%80"><span class="toc-number">2.2.6.</span> <span class="toc-text">侧边栏布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%A1%E7%89%87%E7%BB%84%E4%BB%B6"><span class="toc-number">2.2.7.</span> <span class="toc-text">卡片组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E7%94%BB%E6%95%88%E6%9E%9C"><span class="toc-number">2.2.8.</span> <span class="toc-text">动画效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80"><span class="toc-number">2.2.9.</span> <span class="toc-text">响应式布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%B3%E4%BE%A7%E6%8C%89%E9%92%AE-rightside-styl"><span class="toc-number">2.3.</span> <span class="toc-text">右侧按钮  rightside.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%92%AE%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.3.1.</span> <span class="toc-text">按钮样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E7%BD%AE%E5%92%8C%E5%8A%A8%E7%94%BB"><span class="toc-number">2.3.2.</span> <span class="toc-text">位置和动画</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%9D%A2%E6%9D%BF"><span class="toc-number">2.3.3.</span> <span class="toc-text">配置面板</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.4.</span> <span class="toc-text">响应式设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA"><span class="toc-number">2.5.</span> <span class="toc-text">滚动百分比显示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0-post-styl"><span class="toc-number">2.6.</span> <span class="toc-text">文章  post.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.6.1.</span> <span class="toc-text">链接样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E9%A2%98%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.6.2.</span> <span class="toc-text">标题样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="toc-number">2.6.3.</span> <span class="toc-text">文本内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.6.4.</span> <span class="toc-text">代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.6.5.</span> <span class="toc-text">其他样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8E%A7%E4%BB%B6-pagination-styl"><span class="toc-number">2.7.</span> <span class="toc-text">分页控件  pagination.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8E%A7%E4%BB%B6%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.7.1.</span> <span class="toc-text">分页控件样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.7.2.</span> <span class="toc-text">布局样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA-comment-styl"><span class="toc-number">2.8.</span> <span class="toc-text">评论  comment.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%A4%B4%E9%83%A8%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.8.1.</span> <span class="toc-text">评论头部样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%E5%86%85%E5%AE%B9%E5%AE%B9%E5%99%A8%E6%A0%B7%E5%BC%8F"><span class="toc-number">2.8.2.</span> <span class="toc-text">评论内容容器样式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E8%84%9A-footer-styl"><span class="toc-number">2.9.</span> <span class="toc-text">页脚  footer.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%A1%B5%E5%BA%95%E9%83%A8"><span class="toc-number">2.9.1.</span> <span class="toc-text">网页底部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%85%E8%A3%B9%E5%AE%B9%E5%99%A8"><span class="toc-number">2.9.2.</span> <span class="toc-text">包裹容器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%B4%E9%83%A8-head-styl"><span class="toc-number">2.10.</span> <span class="toc-text">头部  head.styl</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%A4%B4%E9%83%A8"><span class="toc-number">2.10.1.</span> <span class="toc-text">页面头部</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%AF%BC%E8%88%AA"><span class="toc-number">2.10.2.</span> <span class="toc-text">页面导航</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E4%B8%BB%E4%BD%93%E5%92%8C%E6%96%87%E7%AB%A0"><span class="toc-number">2.10.3.</span> <span class="toc-text">页面主体和文章</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E6%9D%9F"><span class="toc-number">3.</span> <span class="toc-text">结束</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%85%E5%8D%95%E9%A1%B5%E9%9D%A2"><span class="toc-number">4.1.</span> <span class="toc-text">清单页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E6%A1%A3%E9%A1%B5%E7%BE%8E%E5%8C%96"><span class="toc-number">4.2.</span> <span class="toc-text">归档页美化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%BE%8E%E5%8C%96"><span class="toc-number">4.3.</span> <span class="toc-text">标签页美化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#page-js-%E6%96%87%E4%BB%B6%E4%BB%A3%E7%A0%81%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">4.3.1.</span> <span class="toc-text">page.js 文件代码修改如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tags-styl-%E6%96%87%E4%BB%B6%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">4.3.2.</span> <span class="toc-text">tags.styl 文件修改如下：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%B1%BB%E9%A1%B5%E7%BE%8E%E5%8C%96"><span class="toc-number">4.4.</span> <span class="toc-text">分类页美化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-categories-pug%EF%BC%9A"><span class="toc-number">4.4.1.</span> <span class="toc-text">修改 categories.pug：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-page-js-%E4%B8%AD%E6%B7%BB%E5%8A%A0-cloudCategories-%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="toc-number">4.4.2.</span> <span class="toc-text">在 page.js 中添加 cloudCategories 函数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-categories-styl%EF%BC%9A"><span class="toc-number">4.4.3.</span> <span class="toc-text">修改 categories.styl：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B6%E9%83%A8%E5%AF%BC%E8%88%AA%E6%A0%8F%E5%AD%97%E4%BD%93"><span class="toc-number">4.5.</span> <span class="toc-text">顶部导航栏字体</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E9%A1%B5%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2"><span class="toc-number">4.6.</span> <span class="toc-text">分页按钮颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%B3%E4%B8%8B%E8%A7%92%E6%8C%89%E9%92%AE%E9%A2%9C%E8%89%B2"><span class="toc-number">4.7.</span> <span class="toc-text">右下角按钮颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E9%A2%98%E9%A2%9C%E8%89%B2"><span class="toc-number">4.8.</span> <span class="toc-text">主题颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A2%AB%E9%80%89%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2"><span class="toc-number">4.9.</span> <span class="toc-text">被选字体颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%A7%E6%A0%8F%E7%9B%AE%E5%BD%95%E9%A2%9C%E8%89%B2"><span class="toc-number">4.10.</span> <span class="toc-text">侧栏目录颜色</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E6%A0%8F%E5%B7%A6%E4%B8%8A%E8%A7%92%E2%80%9C%E6%90%9C%E7%B4%A2%E2%80%9D%E7%9A%84%E5%AD%97%E5%8F%B7%E5%92%8C%E9%A2%9C%E8%89%B2"><span class="toc-number">4.11.</span> <span class="toc-text">搜索栏左上角“搜索”的字号和颜色</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/07/12/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E5%92%8C%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" title="建站记录（三）：代码阅读和部分功能实现"><img src="https://pic.imgdb.cn/item/6691621dd9c307b7e9220042.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="建站记录（三）：代码阅读和部分功能实现"/></a><div class="content"><a class="title" href="/2024/07/12/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%EF%BC%9A%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB%E5%92%8C%E9%83%A8%E5%88%86%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/" title="建站记录（三）：代码阅读和部分功能实现">建站记录（三）：代码阅读和部分功能实现</a><time datetime="2024-07-12T18:01:34.000Z" title="发表于 2024-07-12 18:01:34">2024-07-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/10/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%B9butterfly%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%B6%E6%9E%84%E7%9A%84%E6%A2%B3%E7%90%86/" title="建站记录（二）：对butterfly项目的架构的梳理"><img src="https://pic.imgdb.cn/item/668e7078d9c307b7e9bdda74.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="建站记录（二）：对butterfly项目的架构的梳理"/></a><div class="content"><a class="title" href="/2024/07/10/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%EF%BC%9A%E5%AF%B9butterfly%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%9E%B6%E6%9E%84%E7%9A%84%E6%A2%B3%E7%90%86/" title="建站记录（二）：对butterfly项目的架构的梳理">建站记录（二）：对butterfly项目的架构的梳理</a><time datetime="2024-07-10T12:31:21.000Z" title="发表于 2024-07-10 12:31:21">2024-07-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" title="建站记录（一）"><img src="https://pic.imgdb.cn/item/668dfb1dd9c307b7e9267522.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="建站记录（一）"/></a><div class="content"><a class="title" href="/2024/07/09/%E5%BB%BA%E7%AB%99%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89/" title="建站记录（一）">建站记录（一）</a><time datetime="2024-07-09T19:02:03.000Z" title="发表于 2024-07-09 19:02:03">2024-07-09</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/668bcb04d9c307b7e9f5f5c3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 By J1nz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = (ele) => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from(ele).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+    
+    codeMermaidEle.forEach(ele => {
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+  
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.23.2/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.66.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.14.0-b3"></script></div></div></body></html>
