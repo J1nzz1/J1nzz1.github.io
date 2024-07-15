@@ -11,13 +11,18 @@
   color: #fff !important;
 }
 
+/*导航栏子类保持默认颜色*/
+.page:has(#anMusic-page) #nav .menus_item_child a {
+  color: var(--font-color) !important; /* 恢复默认字体颜色 */
+}
+
+
 /* 高优先级规则来设置站点名称颜色 */
 /* 如果上面的规则仍然不够，可以尝试这个更激进的方法 */
 .page:has(#anMusic-page) #nav *[id*="site-name"],
 .page:has(#anMusic-page) #nav *[class*="site-name"] {
   color: #fff !important;
 }
-
 
 
 
