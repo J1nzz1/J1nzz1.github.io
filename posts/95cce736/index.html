@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>项目日志：移相全桥逆变器通信 | J1nz's Blog</title><meta name="author" content="J1nz"><meta name="copyright" content="J1nz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这是我参与的第一个电气专业的项目，我负责的部分是按照给定的通讯协议实现逆变器控制板与其他部分的通讯，使用串口实现。代码部分实现起来并不困难，但是在单片机上调试着实费了很大功夫。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目日志：移相全桥逆变器通信">
+<meta property="og:url" content="https://j1nzz1.github.io/posts/95cce736/index.html">
+<meta property="og:site_name" content="J1nz&#39;s Blog">
+<meta property="og:description" content="这是我参与的第一个电气专业的项目，我负责的部分是按照给定的通讯协议实现逆变器控制板与其他部分的通讯，使用串口实现。代码部分实现起来并不困难，但是在单片机上调试着实费了很大功夫。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic1.imgdb.cn/item/678a211ed0e0a243d4f5382a.jpg">
+<meta property="article:published_time" content="2025-01-17T17:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-17T09:21:49.142Z">
+<meta property="article:author" content="J1nz">
+<meta property="article:tag" content="HC32F4A0">
+<meta property="article:tag" content="嵌入式编程">
+<meta property="article:tag" content="逆变器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.imgdb.cn/item/678a211ed0e0a243d4f5382a.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://j1nzz1.github.io/posts/95cce736/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="/css/hover_animation.css"><link rel="stylesheet" href="/css/menu_mid.css"><link rel="stylesheet" href="/css/new_post.css"><link rel="stylesheet" href="/css/search_hide.css"><link rel="stylesheet" href="/css/site_icon.css"><link rel="stylesheet" href="/css/movies_page.css"><link rel="stylesheet" href="/css/comics_page.css"><link rel="stylesheet" href="/css/before_hide.css"><link rel="stylesheet" href="/css/books_page.css"><link rel="stylesheet" href="/css/games_page.css"><link rel="stylesheet" href="/css/music.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"WOURYZ5KW7","apiKey":"de7ae43a5b620a11526b973c29243b1c","indexName":"Index","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '项目日志：移相全桥逆变器通信',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-01-17 09:21:49'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
+  }
+})()</script><div id="web_bg"></div><div id="an_music_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic1.imgdb.cn/item/678a211ed0e0a243d4f5382a.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="J1nz's Blog"><img class="site-icon" src="https://pic.imgdb.cn/item/668d71cdd9c307b7e9b16501.png" alt="Logo"/><span class="site-name">J1nz's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">项目日志：移相全桥逆变器通信</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-01-17T17:00:00.000Z" title="发表于 2025-01-17 17:00:00">2025-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-01-17T09:21:49.142Z" title="更新于 2025-01-17 09:21:49">2025-01-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%94%B5%E6%B0%94%E9%A1%B9%E7%9B%AE/">电气项目</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="项目日志：移相全桥逆变器通信"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这是我参与的第一个电气专业的项目，我负责的部分是按照给定的通讯协议实现逆变器控制板与其他部分的通讯，使用串口实现。具体来说，在USART2外连串口转CAN模块，实现串口发送CAN命令；在USART3外连串口转485模块，实现串口发送485命令。</p>
+<p>代码部分没有太多好说的，实现起来并不困难，两个部分加在一起也只花了我一天时间。困难的地方在于，最终运行代码的地方是国产的HC32F4A0单片机。与以往的编程项目不同，嵌入式编程项目中遇到的很多问题都是我难以理解的：明明代码没有问题，但是放在板子上就时好时坏，或者根本跑不起来，需要进行很多调试才能试出来解决方案，而且这个解决方案往往也同样难以理解，稀里糊涂就好了。这块芯片应用很少，网上很难找到其他人解决问题的经验，基本只能自己对着官方文档来调试。下面记录一下调试过程中遇到的种种问题，在以后的项目中可以参考。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>修改、润色、校对项目设计报告</p>
+<h3 id="涉及文件："><a href="#涉及文件：" class="headerlink" title="涉及文件："></a>涉及文件：</h3><p>高功率密度高频逆变器设计报告(改<br>三相PFC电源方案设计报告20241221</p>
+<h1 id="工作一："><a href="#工作一：" class="headerlink" title="工作一："></a>工作一：</h1><p>通过串口转CAN，逆变器控制板（HC32F4A0）通过串口向绝缘监测仪发送CAN命令，<br>1819A1A5 0001020304050607，启动绝缘电阻监测功能（内置高压继电器闭合）。之后控制板应该会周期（每1s）收到绝缘监测仪发送来的CAN数据帧。</p>
+<h3 id="涉及文件：-1"><a href="#涉及文件：-1" class="headerlink" title="涉及文件："></a>涉及文件：</h3><p>GYID系列绝缘监测仪产品规格书V1.0.5</p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>发送命令后高压继电器没有闭合。</p>
+<h3 id="解决过程："><a href="#解决过程：" class="headerlink" title="解决过程："></a>解决过程：</h3><p>问题出在两个地方，一是小导最开始发送的数据帧的帧id是错的，使用电脑上的CAN收发工具应该发送帧id为0x1819A1A5的数据帧，之后电脑从绝缘检测仪收到的数据帧的帧id才应该是0x1819A1A4。小导弄反了，发送了帧id为0x1819A1A4的数据帧。这一点我很快就排查出来了，这个不重要。<br>主要问题在于，小导买的串口转CAN模块上有四个物理开关，其中开关1负责调扩展帧和标准帧，开关2、3一起负责调波特率，开关4负责调是否透传，即是否随数据上传ID。<br>小导的代码是直接通过串口发送一个大小为12的数组，数组里就是完整的CAN命令（12个字节）。如果开启了开关4，串口转CAN模块会自动把前四个字节识别为id，后八个字节识别为数据。小导没有开开关4，所以实际上CAN模块会认为自己收到了没有id的12字节数据。打开开关4即可解决问题。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>在这一步时我既没有搞清楚项目架构，也不明白我的职责划分，小导其实到现在都没有跟我说过这些，他当时只说他来现场教学教我调CAN。我当时甚至没有弄明白真正在做的工作其实是调串口，跟CAN都没有什么关系。而且我也不知道硬件（一个单片机和一个串口转CAN模块，小导没有给我介绍）都起到什么作用。这给当时既不会调CAN也不会调串口、没用过软件也不认识硬件的我带来了极大困惑。<br>他当时遇到了这个问题之后，给我发送了这个绝缘监测仪的产品规格书，我读了之后弄明白了应该发送的命令和期望收到的数据，但是对整个发送接受过程是什么样的完全一窍不通。他去吃饭让我留下解决这个问题，我最初甚至以为需要手动构建完整的CAN帧并通过串口发送，去查了CAN扩展帧的格式。实际上，不管是CAN还是串口转CAN，都不需要这么做。CAN可以直接在CAN_Init函数中配置id和数据，串口转CAN也是直接发送id+数据的数组即可，转CAN模块会自动识别id和数据。<br>总之，尝试过手动构造完整CAN扩展帧并失败之后，我才弄明白不是用单片机的CAN外设直接发送CAN帧，而是通过串口转CAN模块来实现。而小导完全没有给我提过这个模块的事情，这个模块的详细信息还是我找小导要了购买链接去淘宝查到的。<br>理想情况下他应该给我讲一下要做的这个产品各模块之间的关系，以及讲一下我们正在做的工作处于整个项目的哪个部分。由于缺乏这些必要信息，我理解这个项目的过程异常吃力，在DeepSeek的帮助下才慢慢梳理出来我要做什么、我要怎么做。</p>
+<h1 id="工作二："><a href="#工作二：" class="headerlink" title="工作二："></a>工作二：</h1><p>通过串口转485来实现一份通讯协议。</p>
+<h3 id="涉及文件：-2"><a href="#涉及文件：-2" class="headerlink" title="涉及文件："></a>涉及文件：</h3><p>逆变器通讯协议V04<br>逆变器调试指令</p>
+<h3 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h3><ol>
+<li><p>   由于也没有接触过RS-485，所以先去学习了485通信的概念。</p>
+<blockquote>
+<p>RS-485是一种串行通信标准，定义了电气特性（电压、驱动能力和接收能力），而不是通信协议（如波特率、数据格式等）。</p>
+</blockquote>
+<p>说到底和工作一一样，工作一是单片机连串口转CAN模块，这个就是单片机连串口转485模块。</p>
+</li>
+<li><p>分析逆变器通讯协议文档，明确需要实现的功能：</p>
+</li>
+</ol>
+<ul>
+<li>接收数据：<br>从RS-485总线接收命令帧。<br>定义一个缓冲区来存储接收到的数据。<br>在USART的接收中断中，将接收到的数据存储到缓冲区。<br>在初始化USART时，使能接收中断。</li>
+<li>解析命令：<br>根据协议文档解析接收到的命令帧。<br>如果收到的命令不是协议中的任意一条，丢弃命令。<br>如果收到的命令不包含正确的ModbusCRC12校验位，丢弃命令。</li>
+<li>发送响应：<br>根据命令类型，生成并发送响应帧。</li>
+<li>针对升级流程，使用了状态机以确保升级中的每个步骤都按照正确的顺序执行，并且在每个步骤中只接受特定的命令。在这部分还实现了双缓冲区操作，从而在其他七个短命令不浪费空间的情况下满足块数据发送命令的200字节长度的命令。</li>
+</ul>
+<ol start="3">
+<li>   编写了逆变器调试指令，用于测试。</li>
+</ol>
+<h3 id="遇到的问题1："><a href="#遇到的问题1：" class="headerlink" title="遇到的问题1："></a>遇到的问题1：</h3><p>开始时把命令解析的部分也放到了中断函数中，即收到数据时，在中断函数中将收到的数据发送到缓冲区，并解析命令和执行对应操作。<br>运行无反应，调试发现中断函数压根没有运行。</p>
+<h3 id="解决过程：-1"><a href="#解决过程：-1" class="headerlink" title="解决过程："></a>解决过程：</h3><p>小导说不能都放在中断函数里，他把代码改成，中断函数收数据并放入缓冲区，之后将一个标志位Flag置1，而解析命令函数放在主函数的循环当中，当主函数识别到Flag &#x3D; 1时，解析命令并执行对应操作。问题解决。</p>
+<h3 id="遇到的问题2："><a href="#遇到的问题2：" class="headerlink" title="遇到的问题2："></a>遇到的问题2：</h3><p>按照代码，如果输入55 AA A5 55 00（即查询命令，发送时串口工具会自动添加2个字节的CRC校验码，共计7个字节），单片机应该回复55 AA A5 56 11……（即代码中写的21位响应命令+2个CRC字节），这一点已经实现，说明代码逻辑没有问题，并且重复发送查询命令会重复收到响应命令。<br>但是如果输入55 AA A5 57 01 01（即开机命令），单片机应该回复55 AA A5 58 01……，但是在测试中，单片机却发送了AA A5 58 01……，也就是少了第一个字节的55。并且如果重复发送开机命令，单片机不会再做出回复。</p>
+<h3 id="解决过程：-2"><a href="#解决过程：-2" class="headerlink" title="解决过程："></a>解决过程：</h3><p>通过在每个命令处理函数中重置Flag，解决了重复发送命令时无法响应的问题。然而，开机和关机命令的响应仍然丢失了第一个字节 0x55，而消音命令的响应却可以正常返回。<br>通过进一步的测试，发现出现的错误与发送命令的字节数有关，查询命令和消音命令都是7个字节（包含2个CRC校验字节），而开关机命令则是8个字节。我尝试发送消音命令的同时在末尾也增加1个字节，响应也丢失了第1个字节0x55。这种现象表明问题可能与命令的长度或数据处理逻辑有关。<br>查看对应代码，在中断函数中，命令长度的判断条件是 HUM_Rx_count &gt;&#x3D; 7，这意味着当接收到的字节数达到7个时（即5个命令字节+2个CRC字节）就会触发命令处理逻辑。当命令长度大于7时就会出错。<br>最终通过动态判断命令长度解决了这个问题，即HUM_Rx_count &gt;&#x3D; (HMI_Rx_buf[4] + 5)。其中，固定的6个字节为起始字节+设备地址+命令类型+数据长度+两个CRC字节，HMI_Rx_buf[4]为数据长度。</p>
+<h3 id="遇到的问题3："><a href="#遇到的问题3：" class="headerlink" title="遇到的问题3："></a>遇到的问题3：</h3><p>代码在115200的波特率下可以正常工作，一旦切换到协议要求的9600波特率就会出现问题：一开始发送命令会正常返回响应命令，但是发送几次之后就无响应了，必须重启设备才能重新开始有响应，而且又发送几次之后变成无响应。</p>
+<h3 id="解决过程：-3"><a href="#解决过程：-3" class="headerlink" title="解决过程："></a>解决过程：</h3><p>一开始认为是中断冲突导致的问题，尝试了以下方法：</p>
+<ol>
+<li>优化中断处理逻辑，确保其尽可能简短，具体操作为使用环形缓冲区来存储数据，中断函数中只存储数据和修改指针，其余一切操作均放在主循环中进行。</li>
+<li>使用DMA（未实现）</li>
+</ol>
+<p>均失败。这时DeepSeek指出问题可能出在时钟分频上，尽管理论上来说选择Div1、Div4、Div16应该都可以，但是经过验证，只有Div16可以正常工作，其余两个分频系数都无法正常工作。</p>
+<h3 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a>总结：</h3><p>问题3完全不知道出现的原因，也不清楚是怎么被解决的。很莫名其妙。</p>
+<h1 id="工作三："><a href="#工作三：" class="headerlink" title="工作三："></a>工作三：</h1><p>通过串口转CAN实现一份通讯协议</p>
+<h3 id="涉及文件：-3"><a href="#涉及文件：-3" class="headerlink" title="涉及文件："></a>涉及文件：</h3><p>8KW逆变主从通讯协议<br>DS_HC32F4A0系列数据手册_Rev1.4<br>RM_HC32F4A0系列参考手册_Rev1.3</p>
+<h3 id="实现过程：-1"><a href="#实现过程：-1" class="headerlink" title="实现过程："></a>实现过程：</h3><p>本质上与串口转485并无不同，过程类似，在此省略。</p>
+<h3 id="遇到的问题1：-1"><a href="#遇到的问题1：-1" class="headerlink" title="遇到的问题1："></a>遇到的问题1：</h3><p>向逆变器（即HC32F4A0）发送命令没有反应。通过调试得知中断函数正常运行，把寄存器收到的数据传到了缓冲区，并将标志位置1，但是主函数在标志位置1之后没有工作。</p>
+<h3 id="解决过程：-4"><a href="#解决过程：-4" class="headerlink" title="解决过程："></a>解决过程：</h3><p>排查发现是Systick_Init函数没有运行，即使编译没有报错。至于根本原因是HC32没有Systick定时器还是我配置错误我没有深究。我换了种方法，通过Timer0的中断函数计次来实现周期上传信息，问题解决。</p>
+<h3 id="遇到的问题2：-1"><a href="#遇到的问题2：-1" class="headerlink" title="遇到的问题2："></a>遇到的问题2：</h3><p>这个是从头到尾一直在困扰我的问题，和调整分频之前的485一样，每次向串口2发送命令都有概率使其运行不正常，具体表现为串口2的中断回调函数不再运行，CAN_Rx_count和CAN_flag也不正常地停留在非0的状态，即读取数据的动作未完成就被打断。此后只有重启才会恢复，但依然是每次发送命令都有概率触发此错误，少则第一次就触发，多则十几次才触发，一旦触发只能重启。</p>
+<h3 id="解决过程：-5"><a href="#解决过程：-5" class="headerlink" title="解决过程："></a>解决过程：</h3><ol>
+<li>中断函数已经被尽可能简化，只执行“把接收数据寄存器中的数据读入缓冲区并将标志位置1”的操作，其余操作均在主函数中。</li>
+<li>尝试了对串口2的中断回调函数设置临界区保护或原子操作，没有作用。</li>
+<li>尝试了调整串口2的分频系数和过采样倍数，没有作用。为了确保波特率没有问题，查阅HC32F4A0的参考手册，通过读取BRR寄存器的值来验证了运行的波特率的确是设置的值。</li>
+<li>由于串口3转485可以正常运行，所以控制变量，把串口2的所有函数尽可能与串口3的函数接近，包括从传参数的函数改成不传参数的函数，直接从缓冲区数组中读取用得到的数据，没有作用。</li>
+<li>查阅hc32_ll_dma.h和hc32_ll_usart.h，没有发现可以直接配置USART的DMA功能的库函数，所以参考HC32F4A0的数据手册和参考手册直接操作寄存器来配置 DMA 和 USART 的 DMA 功能。经验证，DMA也无法解决这个问题，DMA的传输完成中断依然会被打断。</li>
+<li>此时依然没有意识到是串口2的中断直接被杀死，还以为是CAN_Rx_count和CAN_flag的不正常表现导致的中断函数运行异常。于是尝试实现超时重置机制，如果在一秒内没有接收到完整的数据帧，则自动重置接收状态（CAN_Rx_count、CAN_flag和缓冲区），避免程序因数据接收不完整而卡死。超时检测通过Timer0实现。然而，经过调试发现，如果串口2的中断被杀死，即使接收状态被重置也无法恢复正常。换句话说，CAN_Rx_count和CAN_flag的不正常表现是问题的结果而非原因。</li>
+<li>此后又尝试了在超时触发后重置USART2的错误标志寄存器、重新初始化USART2等，均不奏效。</li>
+<li>为了彻底验证是否是我写的程序的问题（因为之前没有过嵌入式开发的经历，所以心里真的没底），我把我写的各种函数全都删了，只留了最简单的收发，然而问题依旧存在，也就是说，连最简单的从接收数据寄存器中读数据到缓冲区都做不到，到这我都快崩溃了。</li>
+<li>我又重新生成了一个空白项目，从零开始配置串口2，并编写程序实现最基础命令的接收和应答，发现完全没有问题。又把我的完整的CAN通信部分放进去，发现也完美运行。此时我放弃了优化我的代码，而是把目光放在了小导给我的程序中原本存在的那部分，问题一定是那里导致的。（此前不是没有怀疑，而是多次检查过但是没有发现问题，他的这部分又是关键控制部分，我也不敢乱改）</li>
+<li>控制变量进行排查，如果在主函数中把TimerA的初始化函数注释掉，CAN通信就可以完美运行。找小导讨论后得知TimerA的作用是生成PWM波，从而触发外部中断，确定了是外部中断导致的CAN通信异常。然而外部中断必须保持最高优先级和严格的时间周期，不能调整，进度又僵住了。</li>
+<li>最终是调整了SPI通信的分频系数，从Div64改到了Div32。SPI通信用于从传感器读取数据并参考数据进行控制，更改后通过Debug可以看到缓冲区中依然可以读取到数据，而这个修改似乎是给CAN通信留出了时间裕量，CAN通信可以正常运行。</li>
+</ol>
+<h3 id="遇到的问题3：-1"><a href="#遇到的问题3：-1" class="headerlink" title="遇到的问题3："></a>遇到的问题3：</h3><p>周期上传功能出现异常，第二条信息的帧ID和数据部分错位。</p>
+<h3 id="解决过程：-6"><a href="#解决过程：-6" class="headerlink" title="解决过程："></a>解决过程：</h3><p>修改函数将这两条分开发送也不行，更改发送的CAN帧的构造方式也不行，最终在两条发送之间增加10ms延时，问题解决。</p>
+<h3 id="遇到的问题4："><a href="#遇到的问题4：" class="headerlink" title="遇到的问题4："></a>遇到的问题4：</h3><p>在安装到设备上后运行时单片机有时会无法正常启动。</p>
+<h3 id="解决过程：-7"><a href="#解决过程：-7" class="headerlink" title="解决过程："></a>解决过程：</h3><p>在主函数的初始化部分加一些延时，问题解决，原因不明。</p>
+<h3 id="总结：-2"><a href="#总结：-2" class="headerlink" title="总结："></a>总结：</h3><p>对硬件运行的理解还很浅薄，所以大致知道是外部中断长时间、高频率、高优先级的运行导致了CAN通信的异常，但是不知道从何处下手解决，也不能理解为什么串口转485就可以正常运行。<br>学海无涯，共勉。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://J1nzz1.github.io">J1nz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://j1nzz1.github.io/posts/95cce736/">https://j1nzz1.github.io/posts/95cce736/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://J1nzz1.github.io" target="_blank">J1nz's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HC32F4A0/">HC32F4A0</a><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%BC%96%E7%A8%8B/">嵌入式编程</a><a class="post-meta__tags" href="/tags/%E9%80%86%E5%8F%98%E5%99%A8/">逆变器</a></div><div class="post_share"><div class="social-share" data-image="https://pic1.imgdb.cn/item/678a211ed0e0a243d4f5382a.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">J1nz</div><div class="author-info__description">爱是最高规格的抑制剂.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">9</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=484434695" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #4b4a48;"></i></a><a class="social-icon" href="weixin://contacts/profile/J1nz_aono" target="_blank" title="WeChat"><i class="fa-brands fa-weixin" style="color: #4b4a48;"></i></a><a class="social-icon" href="https://github.com/J1nzz1" target="_blank" title="Github"><i class="fab fa-github" style="color: #4b4a48;"></i></a><a class="social-icon" href="mailto:j1nzaono@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4b4a48;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="toc-number">2.0.1.</span> <span class="toc-text">涉及文件：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E4%B8%80%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">工作一：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E6%96%87%E4%BB%B6%EF%BC%9A-1"><span class="toc-number">3.0.1.</span> <span class="toc-text">涉及文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.0.2.</span> <span class="toc-text">遇到的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">3.0.3.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-number">3.0.4.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E4%BA%8C%EF%BC%9A"><span class="toc-number">4.</span> <span class="toc-text">工作二：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E6%96%87%E4%BB%B6%EF%BC%9A-2"><span class="toc-number">4.0.1.</span> <span class="toc-text">涉及文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="toc-number">4.0.2.</span> <span class="toc-text">实现过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%981%EF%BC%9A"><span class="toc-number">4.0.3.</span> <span class="toc-text">遇到的问题1：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-1"><span class="toc-number">4.0.4.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%982%EF%BC%9A"><span class="toc-number">4.0.5.</span> <span class="toc-text">遇到的问题2：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-2"><span class="toc-number">4.0.6.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%983%EF%BC%9A"><span class="toc-number">4.0.7.</span> <span class="toc-text">遇到的问题3：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-3"><span class="toc-number">4.0.8.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-1"><span class="toc-number">4.0.9.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E4%B8%89%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">工作三：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E6%96%87%E4%BB%B6%EF%BC%9A-3"><span class="toc-number">5.0.1.</span> <span class="toc-text">涉及文件：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%EF%BC%9A-1"><span class="toc-number">5.0.2.</span> <span class="toc-text">实现过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%981%EF%BC%9A-1"><span class="toc-number">5.0.3.</span> <span class="toc-text">遇到的问题1：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-4"><span class="toc-number">5.0.4.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%982%EF%BC%9A-1"><span class="toc-number">5.0.5.</span> <span class="toc-text">遇到的问题2：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-5"><span class="toc-number">5.0.6.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%983%EF%BC%9A-1"><span class="toc-number">5.0.7.</span> <span class="toc-text">遇到的问题3：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-6"><span class="toc-number">5.0.8.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%984%EF%BC%9A"><span class="toc-number">5.0.9.</span> <span class="toc-text">遇到的问题4：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%EF%BC%9A-7"><span class="toc-number">5.0.10.</span> <span class="toc-text">解决过程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A-2"><span class="toc-number">5.0.11.</span> <span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/95cce736/" title="项目日志：移相全桥逆变器通信"><img src="https://pic1.imgdb.cn/item/678a211ed0e0a243d4f5382a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目日志：移相全桥逆变器通信"/></a><div class="content"><a class="title" href="/posts/95cce736/" title="项目日志：移相全桥逆变器通信">项目日志：移相全桥逆变器通信</a><time datetime="2025-01-17T17:00:00.000Z" title="发表于 2025-01-17 17:00:00">2025-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6617580c/" title="论文日志，学习状态和人生旷野"><img src="https://pic.imgdb.cn/item/66b53cc7d9c307b7e9c1a048.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="论文日志，学习状态和人生旷野"/></a><div class="content"><a class="title" href="/posts/6617580c/" title="论文日志，学习状态和人生旷野">论文日志，学习状态和人生旷野</a><time datetime="2024-08-08T22:30:00.000Z" title="发表于 2024-08-08 22:30:00">2024-08-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/bee90278/" title="友人传：厨神付钰童之烦恼"><img src="https://pic.imgdb.cn/item/66a2bfa9d9c307b7e9dc73e8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="友人传：厨神付钰童之烦恼"/></a><div class="content"><a class="title" href="/posts/bee90278/" title="友人传：厨神付钰童之烦恼">友人传：厨神付钰童之烦恼</a><time datetime="2024-07-25T22:00:00.000Z" title="发表于 2024-07-25 22:00:00">2024-07-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/df32bbf1/" title="杂谈：朝鲜民生，末世废土小说随想"><img src="https://pic.imgdb.cn/item/6696f6d6d9c307b7e90d4827.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="杂谈：朝鲜民生，末世废土小说随想"/></a><div class="content"><a class="title" href="/posts/df32bbf1/" title="杂谈：朝鲜民生，末世废土小说随想">杂谈：朝鲜民生，末世废土小说随想</a><time datetime="2024-07-16T20:30:00.000Z" title="发表于 2024-07-16 20:30:00">2024-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4c65f289/" title="建站记录（四）：后续优化"><img src="https://pic.imgdb.cn/item/6696c87bd9c307b7e9d39048.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="建站记录（四）：后续优化"/></a><div class="content"><a class="title" href="/posts/4c65f289/" title="建站记录（四）：后续优化">建站记录（四）：后续优化</a><time datetime="2024-07-15T14:00:00.000Z" title="发表于 2024-07-15 14:00:00">2024-07-15</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/668bcb04d9c307b7e9f5f5c3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By J1nz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = (ele) => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from(ele).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+    
+    codeMermaidEle.forEach(ele => {
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+  
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="/js/anzhiyu.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.23.2/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.66.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.14.0-b3"></script></div></div></body></html>
