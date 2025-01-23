@@ -1488,9 +1488,13 @@ img:not([src]) {
 blockquote {
   margin: 0 0 20px;
   padding: 12px 15px;
-  border-left: 3px solid #49b1f5;
+  border-left: 5px solid #49b1f5;
   background-color: var(--blockquote-bg);
   color: var(--blockquote-color);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
 }
 blockquote footer cite:before {
   padding: 0 5px;
