@@ -1,0 +1,21 @@
+/* 卡牌名称样式 */
+.card-name {
+    cursor: pointer;
+    color: #007bff; /* 蓝色字体 */
+    text-decoration: underline; /* 下划线 */
+}
+
+/* 图片显示区域样式 */
+#card-image-preview {
+    display: none;
+    position: fixed; /* 固定定位，悬浮在页面上 */
+    border: none; /* 去掉边框 */
+    box-shadow: none; /* 去掉阴影（可选） */
+    pointer-events: none; /* 防止图片遮挡鼠标事件 */
+    z-index: 1000; /* 确保图片在最上层 */
+}
+
+#card-image-preview img {
+    max-width: 100%; /* 图片最大宽度为容器宽度 */
+    height: auto; /* 图片高度自适应 */
+}
