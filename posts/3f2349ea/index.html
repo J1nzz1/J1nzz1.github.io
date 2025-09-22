@@ -1,0 +1,290 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>大世界单人输出能力可视化——弗洛洛为什么是大世界的神 | J1nz's Blog</title><meta name="author" content="J1nz"><meta name="copyright" content="J1nz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="个人向客观评估大世界舒适度，非循环轴、非极限轴，最有参考价值的是前3秒、前6秒、前9秒乃至前12秒的输出效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大世界单人输出能力可视化——弗洛洛为什么是大世界的神">
+<meta property="og:url" content="https://j1nzz1.github.io/posts/3f2349ea/index.html">
+<meta property="og:site_name" content="J1nz&#39;s Blog">
+<meta property="og:description" content="个人向客观评估大世界舒适度，非循环轴、非极限轴，最有参考价值的是前3秒、前6秒、前9秒乃至前12秒的输出效率">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg">
+<meta property="article:published_time" content="2025-08-18T12:00:00.000Z">
+<meta property="article:modified_time" content="2025-09-22T01:50:50.970Z">
+<meta property="article:author" content="J1nz">
+<meta property="article:tag" content="鸣潮">
+<meta property="article:tag" content="数据可视化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg"><link rel="shortcut icon" href="/"><link rel="canonical" href="https://j1nzz1.github.io/posts/3f2349ea/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="/css/hover_animation.css"><link rel="stylesheet" href="/css/menu_mid.css"><link rel="stylesheet" href="/css/new_post.css"><link rel="stylesheet" href="/css/search_hide.css"><link rel="stylesheet" href="/css/site_icon.css"><link rel="stylesheet" href="/css/movies_page.css"><link rel="stylesheet" href="/css/comics_page.css"><link rel="stylesheet" href="/css/before_hide.css"><link rel="stylesheet" href="/css/books_page.css"><link rel="stylesheet" href="/css/games_page.css"><link rel="stylesheet" href="/css/music.css"><link rel="stylesheet" href="/css/img_hover.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: {"appId":"WOURYZ5KW7","apiKey":"de7ae43a5b620a11526b973c29243b1c","indexName":"Index","hits":{"per_page":10},"languages":{"input_placeholder":"搜索文章","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '大世界单人输出能力可视化——弗洛洛为什么是大世界的神',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-09-22 01:50:50'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
+  }
+})()</script><div id="web_bg"></div><div id="an_music_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic.imgdb.cn/item/668bcb04d9c307b7e9f5f5c3.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="J1nz's Blog"><img class="site-icon" src="https://pic.imgdb.cn/item/668d71cdd9c307b7e9b16501.png" alt="Logo"/><span class="site-name">J1nz's Blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">大世界单人输出能力可视化——弗洛洛为什么是大世界的神</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-08-18T12:00:00.000Z" title="发表于 2025-08-18 12:00:00">2025-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-09-22T01:50:50.970Z" title="更新于 2025-09-22 01:50:50">2025-09-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%B8%B8%E6%88%8F%E6%94%BB%E7%95%A5/">游戏攻略</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="大世界单人输出能力可视化——弗洛洛为什么是大世界的神"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><html><head></head><body><h1 id="综评"><a href="#综评" class="headerlink" title="综评"></a>综评</h1><blockquote>
+<p>三个角色都是21，不考虑01情况。</p>
+<p>面板用的我自己的面板，<br>卡提51500生命78.5暴击274爆伤8普伤<br>弗洛洛2405攻击98暴击282爆伤25技伤<br>椿2316攻击91暴击247爆伤32普伤</p>
+<p>个人向客观评估大世界舒适度，非循环轴、非极限轴，最有参考价值的是前3秒、前6秒、前9秒乃至前12秒的输出效率。</p>
+</blockquote>
+<p>单人出伤情况如图所示：<br>【图】</p>
+<p><strong>先说结论：</strong><br>21椿，非R启动战士，普攻伤害加成乘区爆炸，3秒出伤6w，6秒出伤12w，且可以一日花瞬爆26w，大世界体验在1.x版本角色中已经非常优秀。但其输出资源获取条件苛刻，自拐buff触发条件苛刻，常态输出后劲不足，一日花CD太长存在真空期，单人体验算不上好。</p>
+<p>21卡提，数值怪，大世界输出平滑，3秒出伤6w，6秒出伤28w。<br>吃不满自拐的常态伤害就已经超过完全姿态的椿，短CD爆发也更契合大世界，同金c里除弗洛洛之外的顶尖水准。生命c模版带来的强生存能力和R2带来的续航能力也使其对治疗位的需求很低。虽然是R战士，但是抛开R不谈就已经比其他非R战士的大世界能力要强了，夯。</p>
+<p>21弗，机制堆料集大成者，冷启动3秒出伤11w，6秒出伤34w，一日谱无前戏出伤42w。椿的完全上位，数值上不输卡提太多的情况下机制远比卡提契合大世界。集优秀索敌、长手、快速出伤、大范围aoe、常态高伤害、短时间高爆发为一体，有时停、有位移、有低成本聚怪、有减伤、有抗打断、有大世界几乎常驻的超高自拐，还不用看大招动画。夯爆了。</p>
+<h1 id="椿"><a href="#椿" class="headerlink" title="椿"></a>椿</h1><p>椿作为一代c中相对没那么依赖变奏和大招的角色、且二链提升十分可观的情况下，在大世界的体验依旧不算好，毒点一堆。</p>
+<p>其绝大部分伤害的倍率都需要红椿蕾的1.5倍加成才有正常水准，专武中的40%加伤也只有释放一日花之后才吃的到，一链的28%爆伤更是要求变奏入场，而且在一般轴的情况下甚至不能全覆盖含苞状态下的输出。这些都是对其单人输出能力的限制。</p>
+<p>除了伤害问题，椿的启动速度也与红椿蕾强绑定。满红椿蕾的情况下两个EQ闪跳A基本就能打满协奏能量，10秒左右就能放出一日花，但是如果没有红椿蕾的情况下，要花费将近17秒才能完成冷启动打满协奏条，这是大世界中完全不能忍受的。</p>
+<p>虽然释放一日花之后也会补满红椿蕾，但是依旧存在不小局限。只要一日花没有炸到全部怪，就要消耗红椿蕾补刀，补完刀虽然协奏条满了，但是到另一组怪面前时往往一日花还没转完25秒内置cd，不利用变奏补充红椿蕾就只能低倍率平A刮痧。</p>
+<p>还有一个问题就是含苞状态不常驻，或者说持续时间太短。含苞状态下大部分伤害从1.5倍倍率变成2倍倍率，然而大世界很少有怪能抗住一日花还不死，而在飞到下一波怪之前往往就已经退出含苞状态了，因此在大世界很难吃到这部分的2倍倍率。哪怕给个30秒的持续时间，都会让椿在大世界的处境得到一定改善。</p>
+<p>上面说的都是缺点，下面说说优点。作为一代c中的佼佼者，即使是在卡提这样的数值怪面前也勉强可以一比。凭借EQ跳魔功，椿的前5秒出伤基本可以持平卡提的4AEZ，这足够处理绝大部分1C。</p>
+<p>此外，对于一组新的3C，椿可以一日花直接轰炸26w，而卡提受限于三剑无法跟着人一起飞，还需要花六秒时间才能打出三剑下落。当然，也仅限于此了。椿的优势区间也只能和卡提的常态持平，一代c最后的辉煌也终于在2.2版本燃尽成灰。接下来登场的是，骑士卡提西亚！</p>
+<h1 id="卡提西亚"><a href="#卡提西亚" class="headerlink" title="卡提西亚"></a>卡提西亚</h1><p>卡提同样不算是大世界能力特化的角色，其设计有很多地方与大世界舒适度的需求相悖，但是即使如此，我还是义无反顾为其大世界体验买单2+1，主打一个简单粗暴力大砖飞。</p>
+<p>卡提的声骸提供的暴击和加伤、专武提供的加深、天赋提供的加伤都和风蚀效应强绑定，这些因素都导致了卡提在首轮冷启动的时候丢掉不少伤害。除此之外，卡提本身的出伤机制也更偏向于R启动，大招状态下输出占比更高，风蚀效应本身的伤害以及卡提一链提供的爆伤也都需要开大才能获取收益。</p>
+<p>但是就算扛着这些debuff，卡提首轮平A也能3秒打出6w伤害，跟椿吃红椿蕾的平A出伤效率持平。要知道，椿两套把红椿蕾打光就萎了，平Adps几乎腰斩，这时候卡提的风蚀才刚刚挂上，越A越痛，三层风蚀一组平A能做到3秒10w。换句话说，单论平A模组，卡提相当于常驻红椿蕾状态的椿，且从第二套平A开始直接常驻含苞状态。</p>
+<p>再看爆发能力，卡提的三剑下落有15w的爆发，虽然由于三剑不随身，转火刚需5秒前戏，但是对应的cd也短，基本可以覆盖每一组怪，稳定6秒出伤28w。3秒解决一组1C怪，6秒解决一组3C怪，不需要等CD，也不容易大炮打蚊子然后漫长真空期。</p>
+<p>反观椿，在有一日花的波次一个一日花能直接打26w，固然很爽。但是在没有一日花的波次只能慢慢平A，9秒才能打20w，而随着红椿蕾的消耗出伤越来越慢，想要不放一日花打够卡提的28w则需要接近20秒，期间即使一日花CD好了也往往不舍得用来炸血量所剩无几的怪。对于现阶段大世界怪物来说，显然是卡提的输出模式更平滑舒适。</p>
+<p>除此之外，卡提作为生命c，容错比椿高不少，二段大的回血也给卡提带来了一定续航能力，没血了就变大卡放个R2，对治疗位的需求远低于椿。</p>
+<p>不过我个人而言不喜欢在大世界放大，只有在打周本的时候才有机会释放卡提的全部性能。一来相较于E只有CD的限制，R所需的能量在大世界的获取过于不稳定，并不能保证需要放大的时候放的出来大。二来开大的动画虽然不读游戏内的表，但是现实时间仍然在消耗，本质上还是浪费了时间。三来卡提开大扣一半血，必须放出二段大才能回上来，大世界的怪又扛不住大卡的输出，大卡还不能翱翔难以转波次，这对我这样的满血强迫症来说实在过于残忍。</p>
+<p>但是即使刨除R技能，小卡也足以独立应对大世界了，其独立能力远超除弗之外的所有C，虽然我身边的一些人认为卡提大世界能力不算强，但是我还是坚持我自己的观点，21卡提的大世界表现在同金中就是顶尖水准。</p>
+<h1 id="弗洛洛"><a href="#弗洛洛" class="headerlink" title="弗洛洛"></a>弗洛洛</h1><p>新神已至！卡提并非不可超越！如果说卡提和赞菲意味着数值上的膨胀，那么弗洛洛则无疑是机制加料的集大成者。</p>
+<p>弗洛洛是椿同款的25秒CD的一日系列输出模式，如果卡提在大世界还只是弱弗半分各有胜负的话，很遗憾，椿在大世界彻彻底底被弗爆金币了。无论是不考虑一日花/一日谱的常态输出，还是一日花和一日谱的爆发输出，乃至出伤速度、转火能力、技能形态、输出容错等等方面，椿在弗面前没有留下一丝一毫的优势区间。</p>
+<p>椿在一日花启动之前吃不满专武加伤，没有变奏入场甚至连一链都吃不到，声骸和专武的buff也都需要叠层，首轮会丢很多伤害。与之相比，弗洛洛只有声骸技能加伤和声骸技能加深吃不满，其他buff基本都是常驻。</p>
+<p>弗洛洛在只吃到接战给的10层余响的情况下，AAA#E就能打10w的输出，也就是说首轮冷启动的常态平A就与卡提启动后的一组平A伤害持平，略高于含苞状态下的椿。<br>其前5秒输出更是断层领先，AAAQ#EE#A直接5秒打出34w，即使抛开Q不谈也略高于卡提6秒才能打出的28w。弗洛洛的这套连招和卡提一样没有真空期，基本每一组怪都能用这一套输出起手，3C基本都能秒掉，1C更是连E#E都扛不住。椿想打出这个级别的6秒伤害只能依赖一日花，而弗洛洛的一日谱同样可以无前戏释放，倍率还比一日花的倍率高几乎2000%。</p>
+<p>如果说单个3C或者一个3C带两三个1C这样的怪卡提还尚可应对，那么面对数个3C大乱斗的场景卡提就难以为继了，这才是弗洛洛真正的优势区间所在。弗洛洛零帧起手一个Z全秒了，偶有漏网之鱼也可以QRE#E伺候，这个时候卡提还在攒剑，而且下落也基本没法打到所有3C。<br>在顶级水准伤害的基础上，弗洛洛较于卡提还有着更长的攻击距离，更优秀的索敌机制，更稳定的聚怪能力，以及更大的攻击范围。强化AE的位移更是对手感的极大提升，在大世界用过珂莱塔的都能理解技能有位移和没位移的区别。虽然弗洛洛本体没有续航能力，但是其生存能力远强于过去的攻击c，天赋带来的抗打断进一步优化输出手感，保证输出效率，30%的减伤也给了弗洛洛更高的容错，且时停也大大降低了被肘的可能性。因此，在大世界舒适度上，弗洛洛比本就不算差的卡提更高一筹。</p>
+<p>弗洛洛的长按R直接退出定音更是神中神的大世界设计，在一日谱的过程中预输入R几乎可以做到瞬间放完谢幕，三四万的伤害只是添头，但是跳过动画对于大世界体验来说是质的飞跃。</p>
+<p>到这里为止弗洛洛已经有着足够优秀的机制了，但是设计师说还不够！我还要再加100爆伤！于是有了余响溢出机制。实际体验中，30秒持续时间基本够用，锄地的时候很少有脱战超过30秒的情况，基本不会断buff，可以视为常驻。弗洛洛在吃不到这个buff的时候大世界体验就已经是绝对的天花板了，加上100爆伤之后其他角色完全难以望其项背。</p>
+<p>综上所述，至少在c出到第三代之前，21弗洛洛在大世界的地位都不会被撼动，是目前最强大世界输出位。</p>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><h2 id="今汐"><a href="#今汐" class="headerlink" title="今汐"></a>今汐</h2><p><strong>总的来说，21今汐一些情况下齐平21椿，一些情况下完全不如21椿。</strong></p>
+<p>冷启动8s打9w，跟椿的无红椿蕾冷启动一个水准，但是启动更快。不吃变奏一个R8.7w，椿是7.2w；E3一喷22.6w，椿一日花20.5w。缺点也很明显，后续没伤害了，21秒总伤还没椿的高。此外，椿的一日花可以无前戏启动，今汐则无论如何都要5-8秒前戏。</p>
+<p>还有一点，椿的轴里只有R有播片，今汐则是E3和R都要播片，E3的现实实际出伤时间还要再长2-3秒（小卡和弗则完全没有播片）。</p>
+<p>今汐变奏入场伤害提升有限，主要是启动快了2秒，椿的变奏入场则实实在在提升了不少总伤。</p>
+<p>椿的主要问题是一日花有真空期，且从零启动一日花比今汐慢。都是冷启动的情况下各有优劣，都是变奏入场的情况下椿则有明显优势：出伤更灵活，总伤更高，不怕漏怪，一日花没有播片。</p>
+<p>而且相对于弗洛洛是椿的完全上位，卡提正好是今汐的完全上位。</p>
+<h2 id="坎特蕾拉"><a href="#坎特蕾拉" class="headerlink" title="坎特蕾拉"></a>坎特蕾拉</h2><p>挖个坑。<br>脑测只有打1c这样的脆皮怪的时候优于椿，其余情况都不如椿，总伤缺陷太大了。</p>
+</body></html></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://J1nzz1.github.io">J1nz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://j1nzz1.github.io/posts/3f2349ea/">https://j1nzz1.github.io/posts/3f2349ea/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://J1nzz1.github.io" target="_blank">J1nz's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%B8%A3%E6%BD%AE/">鸣潮</a><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">数据可视化</a></div><div class="post_share"><div class="social-share" data-image="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://pic.imgdb.cn/item/668bbc4ed9c307b7e9e0c821.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">J1nz</div><div class="author-info__description">爱是最高规格的抑制剂.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">15</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">20</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=484434695" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #4b4a48;"></i></a><a class="social-icon" href="weixin://contacts/profile/J1nz_aono" target="_blank" title="WeChat"><i class="fa-brands fa-weixin" style="color: #4b4a48;"></i></a><a class="social-icon" href="https://github.com/J1nzz1" target="_blank" title="Github"><i class="fab fa-github" style="color: #4b4a48;"></i></a><a class="social-icon" href="mailto:j1nzaono@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4b4a48;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%BC%E8%AF%84"><span class="toc-number">1.</span> <span class="toc-text">综评</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A4%BF"><span class="toc-number">2.</span> <span class="toc-text">椿</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8D%A1%E6%8F%90%E8%A5%BF%E4%BA%9A"><span class="toc-number">3.</span> <span class="toc-text">卡提西亚</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%97%E6%B4%9B%E6%B4%9B"><span class="toc-number">4.</span> <span class="toc-text">弗洛洛</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">5.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8A%E6%B1%90"><span class="toc-number">5.1.</span> <span class="toc-text">今汐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9D%8E%E7%89%B9%E8%95%BE%E6%8B%89"><span class="toc-number">5.2.</span> <span class="toc-text">坎特蕾拉</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/d5d6bb7c/" title="博客图片迁移及子页面内容更新">博客图片迁移及子页面内容更新</a><time datetime="2025-09-22T07:00:00.000Z" title="发表于 2025-09-22 07:00:00">2025-09-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/9ee3b41c/" title="杀戮尖塔抓位解析个人向记录——战士篇">杀戮尖塔抓位解析个人向记录——战士篇</a><time datetime="2025-09-21T18:00:00.000Z" title="发表于 2025-09-21 18:00:00">2025-09-21</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/posts/3f2349ea/" title="大世界单人输出能力可视化——弗洛洛为什么是大世界的神">大世界单人输出能力可视化——弗洛洛为什么是大世界的神</a><time datetime="2025-08-18T12:00:00.000Z" title="发表于 2025-08-18 12:00:00">2025-08-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/95cce736/" title="项目日志：移相全桥逆变器通信"><img src="https://pic1.imgdb.cn/item/678a211ed0e0a243d4f5382a.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="项目日志：移相全桥逆变器通信"/></a><div class="content"><a class="title" href="/posts/95cce736/" title="项目日志：移相全桥逆变器通信">项目日志：移相全桥逆变器通信</a><time datetime="2025-01-17T17:00:00.000Z" title="发表于 2025-01-17 17:00:00">2025-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/7765ad04/" title="PLS-SEM结果汇报和案例分析"><img src="https://pic1.imgdb.cn/item/678ce076d0e0a243d4f5a8db.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PLS-SEM结果汇报和案例分析"/></a><div class="content"><a class="title" href="/posts/7765ad04/" title="PLS-SEM结果汇报和案例分析">PLS-SEM结果汇报和案例分析</a><time datetime="2024-12-07T12:00:00.000Z" title="发表于 2024-12-07 12:00:00">2024-12-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://pic.imgdb.cn/item/668bcb04d9c307b7e9f5f5c3.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By J1nz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = (ele) => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from(ele).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+    
+    codeMermaidEle.forEach(ele => {
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+  
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="/js/anzhiyu.js"></script><script async data-pjax src="/js/img_hover.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div><script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.23.2/dist/algoliasearch-lite.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.66.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js?v=4.14.0-b3"></script></div></div></body></html>
