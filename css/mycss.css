@@ -1,0 +1,104 @@
+/* 功能一 */
+/* 关闭头像悬停动画 */
+#aside-content .card-info .card-info-social-icons .social-icon :hover{
+    transform: scale(1.5);
+}
+
+#aside-content .avatar-img :hover{
+    transform: none;
+}
+
+
+
+/* 功能二 */
+/* 将menu从顶部右侧移到顶部中间 */
+#nav .menus_items {
+    position: absolute;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#nav .menus_items .menus_item:hover .menus_item_child{
+  display: flex;
+}
+
+/* 这里的2是代表导航栏的第二个元素，即有子菜单的元素，可以按自己需求修改 */
+.menus_items .menus_item:nth-child(2) .menus_item_child {
+    left: -150px;
+}
+
+.menus_items .menus_item:nth-child(1) .menus_item_child {
+    left: -65px;
+}
+
+
+
+/* 功能三 */
+/* 隐藏“搜索”文字 */
+#search-button .site-page.social-icon.search span {
+  display: none;
+}
+
+
+
+/* 功能四 */
+/* 外挂最新文章标签 */
+#recent-posts>.recent-post-item {
+    position: relative;
+}
+
+.newPost-left,
+.newPost-right {
+    position: absolute;
+    top: 0;
+    color: white;
+    padding: 0 15px;
+    background-color: #4a567e;
+    border-radius: 0 0 10px 10px;
+}
+
+.newPost-left {
+    left: 15px;
+}
+
+.newPost-right {
+    right: 15px;
+}
+
+
+
+/* 功能五 */
+/* 归档页美化，隐藏不好看的图案 */
+/* 1. .article-sort样式左侧边框改为无色 */
+.article-sort {
+  border-left: none !important;
+}
+
+/* 2. 去除.article-sort-title样式左侧的装饰性元素、圆点和细竖条 */
+.article-sort-title:before {
+  display: none !important;
+}
+
+.article-sort-title:after {
+  display: none !important;
+}
+
+/* 3. 去除.article-sort-item样式左侧的装饰性元素、圆点 */
+.article-sort-item:before {
+  display: none !important;
+}
+
+/* 4. 去除.year 类样式左侧的装饰性元素、圆点 */
+.article-sort-item.year:before {
+  display: none !important;
+}
+
+
+
+/* 功能六 */
+/* 把网站logo稍微往上挪了一点 */
+.site-icon {
+  position: relative;
+  top: -3px; 
+}
