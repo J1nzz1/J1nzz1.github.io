@@ -10,35 +10,13 @@
 
 
 
-/* 功能二 */
+/* 功能二（移除） */
 /* 将menu从顶部右侧移到顶部中间 */
-#nav .menus_items {
-    position: absolute;
-    width: fit-content;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#nav .menus_items .menus_item:hover .menus_item_child{
-  display: flex;
-}
-
-/* 这里的2是代表导航栏的第二个元素，即有子菜单的元素，可以按自己需求修改 */
-.menus_items .menus_item:nth-child(2) .menus_item_child {
-    left: -150px;
-}
-
-.menus_items .menus_item:nth-child(1) .menus_item_child {
-    left: -65px;
-}
 
 
-
-/* 功能三 */
+/* 功能三（移除） */
 /* 隐藏“搜索”文字 */
-#search-button .site-page.social-icon.search span {
-  display: none;
-}
+
 
 
 
@@ -101,4 +79,50 @@
 .site-icon {
   position: relative;
   top: -3px; 
+}
+
+
+
+/* 功能七 */
+/* 250923移除搜索后，出现bug，移除此前的功能二三，进行修复 */
+/* 最终修复方案 - 使用flexbox实现完美居中 */
+#nav {
+    display: flex;
+    justify-content: center; /* 水平居中所有子元素 */
+    align-items: center; /* 垂直居中 */
+    position: relative;
+}
+
+#nav #blog-info {
+    position: absolute;
+    left: 36px; /* 保持博客信息在左侧 */
+}
+
+#nav .menus_items {
+    position: static; /* 移除绝对定位 */
+    transform: none;
+    margin: 0 auto; /* 自动水平居中 */
+}
+
+/* 完全隐藏搜索按钮 */
+#nav #search-button {
+    display: none !important;
+}
+
+
+
+/* 修复子菜单方向 - 保持横向展开 */
+#nav .menus_items .menus_item:hover .menus_item_child {
+    display: flex !important; /* 保持横向flex布局 */
+    flex-direction: row; /* 确保横向排列 */
+    flex-wrap: wrap; /* 允许换行（如果项目很多） */
+    width: auto; /* 自动宽度 */
+    min-width: max-content; /* 最小宽度适应内容 */
+}
+
+/* 重置子菜单位置 */
+.menus_items .menus_item .menus_item_child {
+    left: 50% !important; /* 水平居中 */
+    transform: translateX(-50%) !important; /* 居中调整 */
+    right: auto !important; /* 重置右侧定位 */
 }
