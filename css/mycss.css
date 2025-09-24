@@ -109,6 +109,12 @@
     display: none !important;
 }
 
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+    #nav #blog-info {
+        left: 16px; /* 移动端调整左边距 */
+    }
+}
 
 
 /* 修复子菜单方向 - 保持横向展开 */
