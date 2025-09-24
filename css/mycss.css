@@ -109,26 +109,51 @@
     display: none !important;
 }
 
-/* 移动端适配 */
-@media screen and (max-width: 768px) {
-    #nav #blog-info {
-        left: 16px; /* 移动端调整左边距 */
+
+/* 仅在PC端应用横向子菜单 */
+@media screen and (min-width: 769px) {
+    /* 修复子菜单方向 - 保持横向展开（仅PC端） */
+    #nav .menus_items .menus_item:hover .menus_item_child {
+        display: flex !important; /* 保持横向flex布局 */
+        flex-direction: row; /* 确保横向排列 */
+        flex-wrap: wrap; /* 允许换行（如果项目很多） */
+        width: auto; /* 自动宽度 */
+        min-width: max-content; /* 最小宽度适应内容 */
+    }
+
+    /* 重置子菜单位置（仅PC端） */
+    .menus_items .menus_item .menus_item_child {
+        left: 50% !important; /* 水平居中 */
+        transform: translateX(-50%) !important; /* 居中调整 */
+        right: auto !important; /* 重置右侧定位 */
     }
 }
 
-
-/* 修复子菜单方向 - 保持横向展开 */
-#nav .menus_items .menus_item:hover .menus_item_child {
-    display: flex !important; /* 保持横向flex布局 */
-    flex-direction: row; /* 确保横向排列 */
-    flex-wrap: wrap; /* 允许换行（如果项目很多） */
-    width: auto; /* 自动宽度 */
-    min-width: max-content; /* 最小宽度适应内容 */
-}
-
-/* 重置子菜单位置 */
-.menus_items .menus_item .menus_item_child {
-    left: 50% !important; /* 水平居中 */
-    transform: translateX(-50%) !important; /* 居中调整 */
-    right: auto !important; /* 重置右侧定位 */
+/* 移动端样式恢复 */
+@media screen and (max-width: 768px) {
+    /* 在移动端恢复导航栏默认布局 */
+    #nav {
+        justify-content: space-between; /* 移动端左右分布 */
+    }
+    
+    #nav #blog-info {
+        position: static; /* 恢复默认位置 */
+        left: auto;
+    }
+    
+    #nav .menus_items {
+        margin: 0; /* 移除自动边距 */
+    }
+    
+    /* 确保移动端子菜单保持纵向 */
+    #nav .menus_items .menus_item:hover .menus_item_child {
+        display: block !important; /* 使用block显示 */
+        flex-direction: column !important; /* 纵向排列 */
+    }
+    
+    .menus_items .menus_item .menus_item_child {
+        left: auto !important; /* 恢复默认位置 */
+        transform: none !important; /* 移除变换 */
+        right: 0 !important; /* 右侧对齐 */
+    }
 }
