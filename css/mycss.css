@@ -13,10 +13,8 @@
 /* 功能二（移除） */
 /* 将menu从顶部右侧移到顶部中间 */
 
-
 /* 功能三（移除） */
 /* 隐藏“搜索”文字 */
-
 
 
 
@@ -109,7 +107,6 @@
     display: none !important;
 }
 
-
 /* 仅在PC端应用横向子菜单 */
 @media screen and (min-width: 769px) {
     /* 修复子菜单方向 - 保持横向展开（仅PC端） */
@@ -157,3 +154,344 @@
         right: 0 !important; /* 右侧对齐 */
     }
 }
+
+
+
+/* 功能八 */
+/* 卡牌悬浮提示样式 */
+.card-tooltip {
+    position: relative;
+    cursor: pointer;
+    color: #e74c3c;
+    font-weight: bold;
+    border-bottom: 1px dashed #e74c3c;
+}
+
+.card-tooltip::after {
+    content: '';
+    position: fixed;
+    width: 200px;
+    height: 280px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s;
+    z-index: 1000;
+    pointer-events: none;
+    
+    /* 使用CSS变量动态定位 */
+    left: var(--mouse-x, -9999px);
+    top: var(--mouse-y, -9999px);
+    
+    /* 微调偏移量，让图片出现在光标右下方 */
+    transform: translate(10px, 10px);
+}
+
+.card-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* 卡牌图片定义 - 按字母顺序排列 */
+.card-tooltip[data-card="Anger"]::after {
+    background-image: url('http://pic.j1nz.cn/Anger.png');
+}
+
+.card-tooltip[data-card="Armaments"]::after {
+    background-image: url('http://pic.j1nz.cn/Armaments.png');
+}
+
+.card-tooltip[data-card="Barricade"]::after {
+    background-image: url('http://pic.j1nz.cn/Barricade.png');
+}
+
+.card-tooltip[data-card="Bash"]::after {
+    background-image: url('http://pic.j1nz.cn/Bash.png');
+}
+
+.card-tooltip[data-card="BattleTrance"]::after {
+    background-image: url('http://pic.j1nz.cn/BattleTrance.png');
+}
+
+.card-tooltip[data-card="Berserk"]::after {
+    background-image: url('http://pic.j1nz.cn/Berserk.png');
+}
+
+.card-tooltip[data-card="BloodforBlood"]::after {
+    background-image: url('http://pic.j1nz.cn/BloodforBlood.png');
+}
+
+.card-tooltip[data-card="Bloodletting"]::after {
+    background-image: url('http://pic.j1nz.cn/Bloodletting.png');
+}
+
+.card-tooltip[data-card="Bludgeon"]::after {
+    background-image: url('http://pic.j1nz.cn/Bludgeon.png');
+}
+
+.card-tooltip[data-card="BodySlam"]::after {
+    background-image: url('http://pic.j1nz.cn/BodySlam.png');
+}
+
+.card-tooltip[data-card="Brutality"]::after {
+    background-image: url('http://pic.j1nz.cn/Brutality.png');
+}
+
+.card-tooltip[data-card="BurningPact"]::after {
+    background-image: url('http://pic.j1nz.cn/BurningPact.png');
+}
+
+.card-tooltip[data-card="Carnage"]::after {
+    background-image: url('http://pic.j1nz.cn/Carnage.png');
+}
+
+.card-tooltip[data-card="Clash"]::after {
+    background-image: url('http://pic.j1nz.cn/Clash.png');
+}
+
+.card-tooltip[data-card="Cleave"]::after {
+    background-image: url('http://pic.j1nz.cn/Cleave.png');
+}
+
+.card-tooltip[data-card="Clothesline"]::after {
+    background-image: url('http://pic.j1nz.cn/Clothesline.png');
+}
+
+.card-tooltip[data-card="Combust"]::after {
+    background-image: url('http://pic.j1nz.cn/Combust.png');
+}
+
+.card-tooltip[data-card="Corruption"]::after {
+    background-image: url('http://pic.j1nz.cn/Corruption.png');
+}
+
+.card-tooltip[data-card="DarkEmbrace"]::after {
+    background-image: url('http://pic.j1nz.cn/DarkEmbrace.png');
+}
+
+.card-tooltip[data-card="Defend"]::after {
+    background-image: url('http://pic.j1nz.cn/Defend.png');
+}
+
+.card-tooltip[data-card="DemonForm"]::after {
+    background-image: url('http://pic.j1nz.cn/DemonForm.png');
+}
+
+.card-tooltip[data-card="Disarm"]::after {
+    background-image: url('http://pic.j1nz.cn/Disarm.png');
+}
+
+.card-tooltip[data-card="DoubleTap"]::after {
+    background-image: url('http://pic.j1nz.cn/DoubleTap.png');
+}
+
+.card-tooltip[data-card="Dropkick"]::after {
+    background-image: url('http://pic.j1nz.cn/Dropkick.png');
+}
+
+.card-tooltip[data-card="DualWield"]::after {
+    background-image: url('http://pic.j1nz.cn/DualWield.png');
+}
+
+.card-tooltip[data-card="Entrench"]::after {
+    background-image: url('http://pic.j1nz.cn/Entrench.png');
+}
+
+.card-tooltip[data-card="Evolve"]::after {
+    background-image: url('http://pic.j1nz.cn/Evolve.png');
+}
+
+.card-tooltip[data-card="Exhume"]::after {
+    background-image: url('http://pic.j1nz.cn/Exhume.png');
+}
+
+.card-tooltip[data-card="Feed"]::after {
+    background-image: url('http://pic.j1nz.cn/Feed.png');
+}
+
+.card-tooltip[data-card="FeelNoPain"]::after {
+    background-image: url('http://pic.j1nz.cn/FeelNoPain.png');
+}
+
+.card-tooltip[data-card="FiendFire"]::after {
+    background-image: url('http://pic.j1nz.cn/FiendFire.png');
+}
+
+.card-tooltip[data-card="FireBreathing"]::after {
+    background-image: url('http://pic.j1nz.cn/FireBreathing.png');
+}
+
+.card-tooltip[data-card="FlameBarrier"]::after {
+    background-image: url('http://pic.j1nz.cn/FlameBarrier.png');
+}
+
+.card-tooltip[data-card="Flex"]::after {
+    background-image: url('http://pic.j1nz.cn/Flex.png');
+}
+
+.card-tooltip[data-card="GhostlyArmor"]::after {
+    background-image: url('http://pic.j1nz.cn/GhostlyArmor.png');
+}
+
+.card-tooltip[data-card="Havoc"]::after {
+    background-image: url('http://pic.j1nz.cn/Havoc.png');
+}
+
+.card-tooltip[data-card="Headbutt"]::after {
+    background-image: url('http://pic.j1nz.cn/Headbutt.png');
+}
+
+.card-tooltip[data-card="HeavyBlade"]::after {
+    background-image: url('http://pic.j1nz.cn/HeavyBlade.png');
+}
+
+.card-tooltip[data-card="Hemokinesis"]::after {
+    background-image: url('http://pic.j1nz.cn/Hemokinesis.png');
+}
+
+.card-tooltip[data-card="Immolate"]::after {
+    background-image: url('http://pic.j1nz.cn/Immolate.png');
+}
+
+.card-tooltip[data-card="Impervious"]::after {
+    background-image: url('http://pic.j1nz.cn/Impervious.png');
+}
+
+.card-tooltip[data-card="InfernalBlade"]::after {
+    background-image: url('http://pic.j1nz.cn/InfernalBlade.png');
+}
+
+.card-tooltip[data-card="Inflame"]::after {
+    background-image: url('http://pic.j1nz.cn/Inflame.png');
+}
+
+.card-tooltip[data-card="Intimidate"]::after {
+    background-image: url('http://pic.j1nz.cn/Intimidate.png');
+}
+
+.card-tooltip[data-card="IronWave"]::after {
+    background-image: url('http://pic.j1nz.cn/IronWave.png');
+}
+
+.card-tooltip[data-card="Juggernaut"]::after {
+    background-image: url('http://pic.j1nz.cn/Juggernaut.png');
+}
+
+.card-tooltip[data-card="LimitBreak"]::after {
+    background-image: url('http://pic.j1nz.cn/LimitBreak.png');
+}
+
+.card-tooltip[data-card="Metallicize"]::after {
+    background-image: url('http://pic.j1nz.cn/Metallicize.png');
+}
+
+.card-tooltip[data-card="Offering"]::after {
+    background-image: url('http://pic.j1nz.cn/Offering.png');
+}
+
+.card-tooltip[data-card="PerfectedStrike"]::after {
+    background-image: url('http://pic.j1nz.cn/PerfectedStrike.png');
+}
+
+.card-tooltip[data-card="PommelStrike"]::after {
+    background-image: url('http://pic.j1nz.cn/PommelStrike.png');
+}
+
+.card-tooltip[data-card="PowerThrough"]::after {
+    background-image: url('http://pic.j1nz.cn/PowerThrough.png');
+}
+
+.card-tooltip[data-card="Pummel"]::after {
+    background-image: url('http://pic.j1nz.cn/Pummel.png');
+}
+
+.card-tooltip[data-card="Rage"]::after {
+    background-image: url('http://pic.j1nz.cn/Rage.png');
+}
+
+.card-tooltip[data-card="Rampage"]::after {
+    background-image: url('http://pic.j1nz.cn/Rampage.png');
+}
+
+.card-tooltip[data-card="Reaper"]::after {
+    background-image: url('http://pic.j1nz.cn/Reaper.png');
+}
+
+.card-tooltip[data-card="RecklessCharge"]::after {
+    background-image: url('http://pic.j1nz.cn/RecklessCharge.png');
+}
+
+.card-tooltip[data-card="Rupture"]::after {
+    background-image: url('http://pic.j1nz.cn/Rupture.png');
+}
+
+.card-tooltip[data-card="SearingBlow"]::after {
+    background-image: url('http://pic.j1nz.cn/SearingBlow.png');
+}
+
+.card-tooltip[data-card="SecondWind"]::after {
+    background-image: url('http://pic.j1nz.cn/SecondWind.png');
+}
+
+.card-tooltip[data-card="SeeingRed"]::after {
+    background-image: url('http://pic.j1nz.cn/SeeingRed.png');
+}
+
+.card-tooltip[data-card="Sentinel"]::after {
+    background-image: url('http://pic.j1nz.cn/Sentinel.png');
+}
+
+.card-tooltip[data-card="SeverSoul"]::after {
+    background-image: url('http://pic.j1nz.cn/SeverSoul.png');
+}
+
+.card-tooltip[data-card="Shockwave"]::after {
+    background-image: url('http://pic.j1nz.cn/Shockwave.png');
+}
+
+.card-tooltip[data-card="ShrugItOff"]::after {
+    background-image: url('http://pic.j1nz.cn/ShrugItOff.png');
+}
+
+.card-tooltip[data-card="SpotWeakness"]::after {
+    background-image: url('http://pic.j1nz.cn/SpotWeakness.png');
+}
+
+.card-tooltip[data-card="Strike"]::after {
+    background-image: url('http://pic.j1nz.cn/Strike.png');
+}
+
+.card-tooltip[data-card="SwordBoomerang"]::after {
+    background-image: url('http://pic.j1nz.cn/SwordBoomerang.png');
+}
+
+.card-tooltip[data-card="Thunderclap"]::after {
+    background-image: url('http://pic.j1nz.cn/Thunderclap.png');
+}
+
+.card-tooltip[data-card="TrueGrit"]::after {
+    background-image: url('http://pic.j1nz.cn/TrueGrit.png');
+}
+
+.card-tooltip[data-card="TwinStrike"]::after {
+    background-image: url('http://pic.j1nz.cn/TwinStrike.png');
+}
+
+.card-tooltip[data-card="Uppercut"]::after {
+    background-image: url('http://pic.j1nz.cn/Uppercut.png');
+}
+
+.card-tooltip[data-card="Warcry"]::after {
+    background-image: url('http://pic.j1nz.cn/Warcry.png');
+}
+
+.card-tooltip[data-card="Whirlwind"]::after {
+    background-image: url('http://pic.j1nz.cn/Whirlwind.png');
+}
+
+.card-tooltip[data-card="WildStrike"]::after {
+    background-image: url('http://pic.j1nz.cn/WildStrike.png');
+}
+
