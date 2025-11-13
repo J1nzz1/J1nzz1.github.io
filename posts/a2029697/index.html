@@ -1,0 +1,289 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>写于10.24，CS2末日之后 | J1nz's Blog</title><meta name="author" content="J1nz"><meta name="copyright" content="J1nz"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一次投资入门课。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="写于10.24，CS2末日之后">
+<meta property="og:url" content="https://j1nzz1.github.io/posts/a2029697/index.html">
+<meta property="og:site_name" content="J1nz&#39;s Blog">
+<meta property="og:description" content="一次投资入门课。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://pic.j1nz.cn/cover17.JPG">
+<meta property="article:published_time" content="2025-10-24T18:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-13T16:16:57.698Z">
+<meta property="article:author" content="J1nz">
+<meta property="article:tag" content="CS2">
+<meta property="article:tag" content="投资">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://pic.j1nz.cn/cover17.JPG"><link rel="shortcut icon" href="http://pic.j1nz.cn/favi1.ico"><link rel="canonical" href="https://j1nzz1.github.io/posts/a2029697/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.14.0-b3"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/movies_page.css"><link rel="stylesheet" href="/css/comics_page.css"><link rel="stylesheet" href="/css/books_page.css"><link rel="stylesheet" href="/css/games_page.css"><link rel="stylesheet" href="/css/music.css"><link rel="stylesheet" href="/css/fancybox.min.css"><link rel="stylesheet" href="/css/fancybox.min.css" media="print" onload="this.media='all'"><script>(()=>{
+      const saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+      
+      window.btf = {
+        saveToLocal: saveToLocal,
+        getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+          script.src = url
+          script.async = true
+          script.onerror = reject
+          script.onload = script.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            script.onload = script.onreadystatechange = null
+            resolve()
+          }
+
+          Object.keys(attr).forEach(key => {
+            script.setAttribute(key, attr[key])
+          })
+
+          document.head.appendChild(script)
+        }),
+
+        getCSS: (url, id = false) => new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+          link.rel = 'stylesheet'
+          link.href = url
+          if (id) link.id = id
+          link.onerror = reject
+          link.onload = link.onreadystatechange = function() {
+            const loadState = this.readyState
+            if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+            link.onload = link.onreadystatechange = null
+            resolve()
+          }
+          document.head.appendChild(link)
+        }),
+
+        addGlobalFn: (key, fn, name = false, parent = window) => {
+          const pjaxEnable = false
+          if (!pjaxEnable && key.startsWith('pjax')) return
+
+          const globalFn = parent.globalFn || {}
+          const keyObj = globalFn[key] || {}
+    
+          if (name && keyObj[name]) return
+    
+          name = name || Object.keys(keyObj).length
+          keyObj[name] = fn
+          globalFn[key] = keyObj
+          parent.globalFn = globalFn
+        }
+      }
+    
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+      
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })()</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":true,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '写于10.24，CS2末日之后',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-13 16:16:57'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  window.addEventListener('load',() => { preloader.endLoading() })
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', () => { preloader.initLoading() }, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', () => { preloader.endLoading() }, 'preloader_end')
+  }
+})()</script><div id="web_bg"></div><div id="an_music_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/avatar1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('http://pic.j1nz.cn/cover17.JPG')"><nav id="nav"><span id="blog-info"><a href="/" title="J1nz's Blog"><img class="site-icon" src="/image/loading1.gif" data-original="http://pic.j1nz.cn/logo1.png" alt="Logo"/><span class="site-name">J1nz's Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> 清单</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/comics/"><i class="fa-fw fa-brands fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-clapperboard"></i><span> 影视</span></a></li><li><a class="site-page child" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书籍</span></a></li><li><a class="site-page child" href="/games/"><i class="fa-fw fa-brands fa-discord"></i><span> 游戏</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/message%20board/"><i class="fa-fw fas fa-clipboard"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">写于10.24，CS2末日之后</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-10-24T18:00:00.000Z" title="发表于 2025-10-24 18:00:00">2025-10-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-11-13T16:16:57.698Z" title="更新于 2025-11-13 16:16:57">2025-11-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%BC%AB%E8%B0%88%E6%9D%82%E5%BD%95/">漫谈杂录</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="写于10.24，CS2末日之后"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><html><head></head><body><h1 id="一"><a href="#一" class="headerlink" title="一"></a>一</h1><p>10.23日，下午四点，现代信号处理下课，燕子哥打来电话。当日早上，V社更改炼金规则，5红合1金，刀皮手套大跌。市场恐慌，资金出逃，形成踩踏。</p>
+<p>我手里一把渐变蝴蝶，一把大理石蝴蝶，都是自用，入手价格分别在23000和15000，入手时都有一定溢价。除此之外还有一个迈阿密手套，入手价格11000，同样有少量溢价。</p>
+<p>两把刀损失巨大，前者从10.22日的峰值37000一路猛跌到最低点14000，于10.23下午五点左右回弹至17000，此后又是一路狂跌，在我写下这句话的10.24下午两点，已经跌破了7500，朝下继续俯冲。后者走势相仿，从峰值20000跌到7500，经历一个峰值为10000的回弹后，一路俯冲到现在的5000。</p>
+<p>手套不遑多让，购入之后一直平稳在10000，这次直接折到4500，弹到5000，现在底价已经掉到不到3000了。此时计算总共的亏损，五万已经折到只剩30%了。</p>
+<p>昨天晚上跟燕子哥讨论这个事情，认为大商会尝试护盘拉价，减少亏损，如果能在回弹的时候搭顺风车出货，可能是最好的结果，理想情况下可以五万变三万，六折保本。但是今天的踩踏甚至远强于昨天上午的大地震，哪怕已经不到峰值的20%，也有散户源源不断的出货，我甚至以为有人在趁势砸盘抄底。</p>
+<p>虽然以经验和理性来考虑，这次下跌本就会持续最少两三天，不可能从第二天开始就回升。但是不断下探的底价实在不容乐观，如果后续没有比较大的拉升力度，大概率24号下午五点就是最后的下车机会，只是腰斩，此后再动可就只剩脚脖子了。恐慌情绪过重，会导致护盘难度进一步上升，价格稍微拉上去一点点可能就会被出逃的散户再次压住动能。总的来说，我倾向于不认为这七天里有机会逃掉了。</p>
+<p>可以预见的有三点：</p>
+<ol>
+<li><p>在10.30号和11.6号，市场还会受到两次巨大的冲击。这两天分别是手里的红皮炼出的金皮解冻的时间，以及在10.24买入的红皮解冻、又炼成金皮且解冻的时间。在这两天，如果冲入市场的货量太大，刀套价格很可能比现在的底价还要低上不少。</p>
+</li>
+<li><p>根据数据分析，市场现存红皮及下级皮肤炼成金皮预计会导致市场上金皮总数增长85%-110%，此后新开箱的期望收益增幅也与之相仿。也就是说，理论上来说，经历一段时间的稳定和情绪修复后，刀皮的数量最多也只是会翻一番。随着下级红皮涨价和上级金皮降价，最终会形成一个新的平衡。显然，我和燕子哥没有出逃的最大原因也是不认为这个价格会稳定在此时的疯狂数值上。 </p>
+</li>
+<li><p>作为一个完全中心化的、不受监管的T+7市场，散户甚至大商对市场的信心都可以说是盲目的，大家都知道V社一句话就可以让这个市场灰飞烟灭，大家也都知道这一天早晚会到来，但是在这样的地震真正到来之前，大部分人都会抱有侥幸心理。这次事件是V社第一次从游戏规则动刀，没有人知道会不会有第二刀、第三刀，又会有多少人敢拿真金白银去赌V社的大发慈悲呢。所以此次事件之后，市场内的资金一定会跑掉不小的部分，没有资金顶高价格，长期市场一定看跌。</p>
+</li>
+</ol>
+<p>基于上述三点，我做出的短期判断是，我对三件大件的心理预期价位分别是15000，8000，5000。如果这七天里回弹到这个区间，直接割肉离场。如果10.26-10.28这三天没有力度足够大的上拉，价格继续下跌，那干脆不跑了，五万变一万和变零蛋也没太大区别了。30号的走势没人能够预测，谁也不知道此后价格是彻底横在脚脖子还是会慢慢回温到腰甚至是胸的位置，只能交给时间。直到回温到一个可以接受的价位，割肉离场。如果再也回不到心理预期价位，认栽。</p>
+<p>对每一个购入大件饰品的人而言，无论是投机还是自用，都一定是抱着对市场流通性带来的稳定性的信任入场的。可能自用党会认为自用掉价也不亏，这样的心态占比会少一些，但是也一定是有的，完全剔除金融属性的话，不会有人会把大几万块砸到一个游戏武器皮肤贴图上。现在市场庄家暴力砸盘宰猪，只能愿赌服输。</p>
+<p>对这样性质的事件我是一直有预期的，cs市场的泡沫太大，一定长期不可持续。基于这样的心理预期，这次割肉也没有太过痛彻心扉。回头来看，抱着我这样比较佛系的心态把钱投进cs市场的自用玩家，长期来看是一定会遇到这样的事情的，无论早晚。因为不是为了升值来，没有止盈的明确界限，末日到来之前都会一直捏在手里用，最多是置换置换，很难离场。能在末日之前离场的除了运气好也只能是运气好。</p>
+<h1 id="二"><a href="#二" class="headerlink" title="二"></a>二</h1><p>10.25晚，昨天下午渐变蝴蝶最低时跌破了6k，市场恐慌至完全不合理的地步，所有饰品价格都跳水。连燕子哥都开始一定程度恐慌，问我6k跑不跑，说不跑可能3k，可能0。</p>
+<p>捏到了今天，从早上开始一路攀升，最后横盘在了13000。没拿到最高点，在12000的时候跳车了。考虑渐变度溢价，今天最高能出14000，但是无所谓了，下车之后就是看戏。手套也4500抛了，现在只剩一些枪皮（买入花了两三千）和一把大理石蝴蝶。</p>
+<p>昨天下午是一个抄底的绝佳机会，所有饰品都跳水，买什么都是捡钱。不过是真的不愿意碰cs饰品市场了，本来就不是重度玩家，没必要。</p>
+<p>而且有一个点是我比较在意的，现在所有人都知道30号会大跌，那么这就是已知信息，会反应在当下的市场上。换句话说，所有人都知道要跌，就未必会跌。尤其是如果炼金出货没那么简单，市场受到的冲击就会比预期更小。以后的阴跌是一定的，但是30号会不会真的出现大规模下跌，我感觉未必了。</p>
+<h1 id="三"><a href="#三" class="headerlink" title="三"></a>三</h1><p>10.31晚。市场验证了我的想法，10.30号，刀套价格不降反升，渐变蝴蝶已经拉到了18000的样子，迈阿密也回升到了7000左右。果然这种情绪已经在七天前就提前释放了，到了30号发现炼金并没有那么大的货量，情绪反而会修复。我25号跟燕子说，如果30号没有继续跌，那我认为价格可能会在一两个月内拉升回我最初买入的价格（渐变蝴蝶在23000左右，迈阿密在10000左右）。现在我认为有可能押中了。</p>
+<p>不过长期依旧不看好，毕竟政策性风险始终如达摩克利斯之剑一样高悬在cs市场头顶。我认为市场会在持续可能长达半年一年的缓慢拉升之后，随着资本抛售离场转入阴跌，当然这还是V社不继续暴力干预市场的前提下。</p>
+<p>卖掉的刀套燕子哥撤回了，冻结一个月，看一个月之后的走势吧。</p>
+</body></html></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://J1nzz1.github.io">J1nz</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://j1nzz1.github.io/posts/a2029697/">https://j1nzz1.github.io/posts/a2029697/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://J1nzz1.github.io" target="_blank">J1nz's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/CS2/">CS2</a><a class="post-meta__tags" href="/tags/%E6%8A%95%E8%B5%84/">投资</a></div><div class="post_share"><div class="social-share" data-image="http://pic.j1nz.cn/cover17.JPG" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/avatar1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">J1nz</div><div class="author-info__description">爱是最高规格的抑制剂.</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">31</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><div class="card-info-social-icons is-center"><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=484434695" target="_blank" title="QQ"><i class="fa-brands fa-qq" style="color: #4b4a48;"></i></a><a class="social-icon" href="weixin://contacts/profile/J1nz_aono" target="_blank" title="WeChat"><i class="fa-brands fa-weixin" style="color: #4b4a48;"></i></a><a class="social-icon" href="https://github.com/J1nzz1" target="_blank" title="Github"><i class="fab fa-github" style="color: #4b4a48;"></i></a><a class="social-icon" href="mailto:j1nzaono@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4b4a48;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80"><span class="toc-number">1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C"><span class="toc-number">2.</span> <span class="toc-text">二</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89"><span class="toc-number">3.</span> <span class="toc-text">三</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/9cc5a4/" title="游记：自驾四千里，苏杭三人行（附连云港之行）"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/cover16.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="游记：自驾四千里，苏杭三人行（附连云港之行）"/></a><div class="content"><a class="title" href="/posts/9cc5a4/" title="游记：自驾四千里，苏杭三人行（附连云港之行）">游记：自驾四千里，苏杭三人行（附连云港之行）</a><time datetime="2025-11-13T19:00:00.000Z" title="发表于 2025-11-13 19:00:00">2025-11-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6f2e8960/" title="综述：人工智能在电力电子中的应用"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/cover18.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="综述：人工智能在电力电子中的应用"/></a><div class="content"><a class="title" href="/posts/6f2e8960/" title="综述：人工智能在电力电子中的应用">综述：人工智能在电力电子中的应用</a><time datetime="2025-11-08T19:00:00.000Z" title="发表于 2025-11-08 19:00:00">2025-11-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/a2029697/" title="写于10.24，CS2末日之后"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/cover17.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="写于10.24，CS2末日之后"/></a><div class="content"><a class="title" href="/posts/a2029697/" title="写于10.24，CS2末日之后">写于10.24，CS2末日之后</a><time datetime="2025-10-24T18:00:00.000Z" title="发表于 2025-10-24 18:00:00">2025-10-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d5d6bb7c/" title="博客性能优化及子页面内容更新"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/cover15.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="博客性能优化及子页面内容更新"/></a><div class="content"><a class="title" href="/posts/d5d6bb7c/" title="博客性能优化及子页面内容更新">博客性能优化及子页面内容更新</a><time datetime="2025-09-22T07:00:00.000Z" title="发表于 2025-09-22 07:00:00">2025-09-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/9ee3b41c/" title="杀戮尖塔抓位解析个人向记录——战士篇"><img src="/image/loading1.gif" data-original="http://pic.j1nz.cn/cover14.JPG" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="杀戮尖塔抓位解析个人向记录——战士篇"/></a><div class="content"><a class="title" href="/posts/9ee3b41c/" title="杀戮尖塔抓位解析个人向记录——战士篇">杀戮尖塔抓位解析个人向记录——战士篇</a><time datetime="2025-09-21T18:00:00.000Z" title="发表于 2025-09-21 18:00:00">2025-09-21</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('http://pic.j1nz.cn/footer_bg1.png')"><div id="footer-wrap"><div class="copyright">&copy;2024 - 2025 By J1nz</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.14.0-b3"></script><script src="/js/main.js?v=4.14.0-b3"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.35/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const runMermaid = (ele) => {
+    window.loadMermaid = true
+    const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+    Array.from(ele).forEach((item, index) => {
+      const mermaidSrc = item.firstElementChild
+      const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+      const mermaidID = 'mermaid-' + index
+      const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+
+      const renderFn = mermaid.render(mermaidID, mermaidDefinition)
+
+      const renderV10 = () => {
+        renderFn.then(({svg}) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svg)
+        })
+      }
+
+      const renderV9 = svg => {
+        mermaidSrc.insertAdjacentHTML('afterend', svg)
+      }
+
+      typeof renderFn === 'string' ? renderV9(renderFn) : renderV10()
+    })
+  }
+
+  const codeToMermaid = () => {
+    const codeMermaidEle = document.querySelectorAll('pre > code.mermaid')
+    if (codeMermaidEle.length === 0) return
+    
+    codeMermaidEle.forEach(ele => {
+      const newEle = document.createElement('div')
+      newEle.className = 'mermaid-wrap'
+      newEle.innerHTML = `<pre class="mermaid-src" hidden>${ele.textContent}</pre>`
+      ele.parentNode.replaceWith(newEle)
+    })
+  }
+
+  const loadMermaid = () => {
+    if (false) codeToMermaid()
+    const $mermaid = document.querySelectorAll('#article-container .mermaid-wrap')
+    if ($mermaid.length === 0) return
+
+    const runMermaidFn = () => runMermaid($mermaid)
+    btf.addGlobalFn('themeChange', runMermaidFn, 'mermaid')
+    window.loadMermaid ? runMermaidFn() : btf.getScript('https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js').then(runMermaidFn)
+  }
+  
+  btf.addGlobalFn('encrypt', loadMermaid, 'mermaid')
+  window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+})()</script></div><script async data-pjax src="/js/anzhiyu.js"></script><script async data-pjax src="/js/card-tooltip.js"></script><script async data-pjax src="/js/fancybox.umd.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script><script src="https://npm.elemecdn.com/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z\d\-\.\+]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(t.test(e.href)||r.test(e.href))&&(e.href=a.dataset.original)})});</script><script>(r=>{r.imageLazyLoadSetting.processImages=t;var a=r.imageLazyLoadSetting.isSPA,o=r.imageLazyLoadSetting.preloadRatio||1,d=i();function i(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(t){(a||t)&&(d=i());for(var e,n=0;n<d.length;n++)0<=(e=(e=d[n]).getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(r.innerHeight*o||document.documentElement.clientHeight*o)&&(()=>{var t,e,a,o,i=d[n];e=function(){d=d.filter(function(t){return i!==t}),r.imageLazyLoadSetting.onImageLoaded&&r.imageLazyLoadSetting.onImageLoaded(i)},(t=i).dataset.loaded||(t.hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(a=new Image,o=t.getAttribute("data-original"),a.onload=function(){t.src=o,t.removeAttribute("data-original"),t.setAttribute("data-loaded",!0),e&&e()},a.onerror=function(){t.removeAttribute("data-original"),t.setAttribute("data-loaded",!1),t.src=o},t.src!==o&&(a.src=o)))})()}function e(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",e),r.addEventListener("resize",e),r.addEventListener("orientationchange",e)})(this);</script></body></html>
